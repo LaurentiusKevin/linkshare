@@ -1,6 +1,8 @@
 import React, { useState } from "react";
-import "../../styles/bootstrap.css";
+// import "../../styles/bootstrap.css";
+import "bootstrap/dist/css/bootstrap.css";
 import "../../styles/style.css";
+import "../../styles/globals.css";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { useRouter } from "next/router";
@@ -22,7 +24,7 @@ function MyApp({ Component, pageProps }) {
     router: {
       asPath,
       back,
-    }
+    },
   };
 
   return (
