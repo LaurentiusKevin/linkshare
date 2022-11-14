@@ -8,11 +8,52 @@ import {
   faTwitter,
   faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
+import useWindowSize from "react-use/lib/useWindowSize";
+import Confetti from "react-confetti";
+import { useEffect, useState } from "react";
 
 export default function PublishPage() {
+  // const { width, height } = useWindowSize();
+  const [confettiConfig, setConfettiConfig] = useState({
+    width: 0,
+    height: 0,
+    numberOfPieces: 100,
+    run: true,
+    recycle: true,
+    gravity: 0.05,
+    friction: 1,
+  });
+
+  useEffect(() => {
+    const { innerWidth: width, innerHeight: height } = window;
+    setConfettiConfig({
+      ...confettiConfig,
+      width: width,
+      height: height,
+    });
+
+    let confettyId = setTimeout(() => {
+      setConfettiConfig({
+        ...confettiConfig,
+        run: false,
+      });
+    }, 5000);
+
+    return () => clearTimeout(confettyId);
+  }, []);
+
   return (
     <div className="row justify-content-center px-3 pt-5">
       <div className="col-md-6 col-lg-4">
+        <Confetti
+          width={confettiConfig.width}
+          height={confettiConfig.height}
+          numberOfPieces={800}
+          gravity={confettiConfig.gravity}
+          recycle={false}
+          run={confettiConfig.run}
+          tweenDuration={30000}
+        />
         <div className="d-flex justify-content-center gap-2 mb-5">
           <FontAwesomeIcon
             className="color-teal-dark"
