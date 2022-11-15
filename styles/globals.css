@@ -1,8 +1,7 @@
-body {
-  font-family: "Poppins", sans-serif;
-}
 .text-primary-custom {
   color: #115d72;
+}
+.lh-2 {
   line-height: 2rem;
 }
 .bg-highlight-custom {

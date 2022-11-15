@@ -24,6 +24,12 @@ export default function DefaultDocument(props) {
           sizes="72x72"
           href="/icon/solutech-pwanextjs-72x72.png"
         />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Poppins&display=swap"
+          rel="stylesheet"
+        />
         {/*<link rel="manifest" href="/manifest.json" />*/}
       </Head>
       <body className="theme-light">
@@ -34,7 +40,6 @@ export default function DefaultDocument(props) {
           <div className="header header-fixed header-logo-center">
             <Link href="/" className="header-title">
               {props?.pageInfo?.title ?? "Starter"}
-
             </Link>
             <a href="#" className="header-icon header-icon-1">
               <FontAwesomeIcon icon={faChevronLeft} />

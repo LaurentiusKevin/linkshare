@@ -72,13 +72,13 @@ export default function PublishPage() {
           />
         </div>
         <div className="text-center mb-5">
-          <div className="h3 text-primary-custom fw-bolder">
+          <div className="h3 text-primary-custom lh-2 fw-bolder">
             Published
             <br /> Your page is online, share it
             <br /> to let the world knows ?
           </div>
         </div>
-        <label className="font-18 fw-bolder text-primary-custom">
+        <label className="font-18 fw-bolder text-primary-custom lh-2">
           Share your page
         </label>
         <div className="input-group mb-3">
