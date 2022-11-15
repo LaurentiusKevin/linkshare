@@ -3,18 +3,23 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
+import { useRouter } from "next/router";
+import { authSignIn } from "../../Config/FirebaseAuthentication";
+import { setCookie } from "nookies";
 
 const formSchema = yup
   .object({
     email: yup.string().email().required("Email wajib diisi!"),
     password: yup
       .string()
-      .length(6, "Minimal 6 karakter!")
+      .min(6, "Minimal 6 karakter!")
       .required("Password wajib diisi!"),
   })
   .required();
 
 export default function LoginPage() {
+  const router = useRouter();
+  const [loginErrorMessage, setLoginErrorMessage] = useState("null");
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -26,7 +31,26 @@ export default function LoginPage() {
   });
 
   const onSubmit = (data) => {
-    alert(JSON.stringify(data));
+    setLoginErrorMessage("");
+    authSignIn(data)
+      .then(async (r) => {
+        setCookie(null, "email", r.user.email, { path: "/" });
+        setCookie(null, "accessToken", r.user.accessToken, { path: "/" });
+        setCookie(null, "uid", r.user.uid, { path: "/" });
+        setCookie(null, "profile", JSON.stringify(r.user), { path: "/" });
+        await router.push("/pages/edit");
+      })
+      .catch((e) => {
+        switch (e.code) {
+          case "auth/wrong-password":
+            setLoginErrorMessage("Wrong email or password");
+            break;
+
+          default:
+            setLoginErrorMessage("There is something wrong with the server!");
+            break;
+        }
+      });
   };
 
   return (

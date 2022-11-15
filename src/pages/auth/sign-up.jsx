@@ -3,13 +3,15 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
+import { authRegister } from "../../Config/FirebaseAuthentication";
+import { useRouter } from "next/router";
 
 const formSchema = yup
   .object({
     email: yup.string().email().required("Email wajib diisi!"),
     password: yup
       .string()
-      .length(6, "Minimal 6 karakter!")
+      .min(6, "Minimal 6 karakter!")
       .required("Password wajib diisi!"),
     passwordConfirmation: yup
       .string()
@@ -18,6 +20,7 @@ const formSchema = yup
   .required();
 
 export default function SignUpPage() {
+  const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -29,7 +32,14 @@ export default function SignUpPage() {
   });
 
   const onSubmit = (data) => {
-    alert(JSON.stringify(data));
+    authRegister(data)
+      .then(async (r) => {
+        alert("User registered");
+        await router.push("/auth/sign-in");
+      })
+      .catch((e) => {
+        alert("Something wrong");
+      });
   };
 
   return (
@@ -49,7 +59,6 @@ export default function SignUpPage() {
               {...register("email")}
               type="email"
               className="form-control"
-              placeholder="name@example.com"
             />
             {errors.email && (
               <div className="text-danger">{errors.email.message}</div>
@@ -63,7 +72,6 @@ export default function SignUpPage() {
               {...register("password")}
               type={showPassword ? "text" : "password"}
               className="form-control"
-              placeholder="name@example.com"
             />
             {errors.password && (
               <div className="text-danger">{errors.password.message}</div>
@@ -77,7 +85,6 @@ export default function SignUpPage() {
               {...register("passwordConfirmation")}
               type={showPassword ? "text" : "password"}
               className="form-control"
-              placeholder="name@example.com"
             />
             {errors.passwordConfirmation && (
               <div className="text-danger">
@@ -93,7 +100,7 @@ export default function SignUpPage() {
             Show password
           </button>
           <button type="submit" className="btn w-100 btn-primary mt-2">
-            Sign In
+            Sign Up
           </button>
         </form>
         <div className="text-center mt-2 fw-bold">
