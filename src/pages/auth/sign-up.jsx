@@ -98,7 +98,7 @@ export default function SignUpPage() {
         </form>
         <div className="text-center mt-2 fw-bold">
           Already have account?{" "}
-          <Link href="/auth/sign-up" className="text-primary-custom">
+          <Link href="/auth/sign-in" className="text-primary-custom">
             Sign In Here
           </Link>
         </div>
