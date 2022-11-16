@@ -4,7 +4,7 @@ import * as yup from "yup";
 
 const formSchema = yup
   .object({
-    url: yup.string().url("URL format salah").required("URL wajib diisi!"),
+    url: yup.string().required("URL wajib diisi!"),
     name: yup.string().required("Nama Halaman wajib diisi!"),
     description: yup.string().required("Deskripsi wajib diisi!"),
   })
@@ -32,8 +32,17 @@ export default function CreatePage(props) {
       </span>
 
       <form onSubmit={handleSubmit(onSubmit)}>
-        <div className="my-3">
-          <input {...register("url")} type="text" className="form-control" />
+        <div className="mb-3">
+          <input
+            {...register("url")}
+            type="text"
+            className="form-control"
+            onKeyUp={(e) => {
+              if (e.target.value.includes(" ")) {
+                e.target.value = e.target.value.replaceAll(" ", "_");
+              }
+            }}
+          />
           {errors.url && (
             <div className="text-danger">{errors.url.message}</div>
           )}
