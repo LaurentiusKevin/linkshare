@@ -25,7 +25,7 @@ export const authSignOut = async () => {
 };
 
 export const getCurrentUser = (context) => {
-  let data = nookies.get(context).user;
+  let data = nookies.get(context, { path: "/" }).user;
 
   if (data === undefined) {
     return null;

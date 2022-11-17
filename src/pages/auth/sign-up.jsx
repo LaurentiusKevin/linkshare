@@ -118,7 +118,7 @@ export default function SignUpPage() {
 }
 
 export async function getServerSideProps(context) {
-  let user = await getCurrentUser();
+  let user = getCurrentUser(context);
 
   if (user !== null) {
     return {

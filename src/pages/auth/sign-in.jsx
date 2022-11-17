@@ -122,7 +122,7 @@ export default function LoginPage() {
 }
 
 export async function getServerSideProps(context) {
-  let user = getCurrentUser();
+  let user = getCurrentUser(context);
 
   if (user !== null) {
     return {

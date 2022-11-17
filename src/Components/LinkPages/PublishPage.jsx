@@ -7,7 +7,8 @@ import {
 import LinkCardComponent from "./LinkCard";
 
 export default function PublishPageComponent(props) {
-  const { pageData, setActivePage } = props;
+  const { pageData, setActivePage, onSubmitPage } = props;
+
   return (
     <>
       <button
@@ -51,7 +52,9 @@ export default function PublishPageComponent(props) {
           </div>
         </div>
       </div>
-      <button className="btn btn-primary w-100">Publish</button>
+      <button className="btn btn-primary w-100" onClick={onSubmitPage}>
+        Publish
+      </button>
     </>
   );
 }

@@ -3,8 +3,12 @@ import CreatePage from "../../Components/LinkPages/CreatePage";
 import AddLinkComponents from "../../Components/LinkPages/AddLink";
 import ListLinkComponent from "../../Components/LinkPages/ListLink";
 import PublishPageComponent from "../../Components/LinkPages/PublishPage";
+import { storePage } from "../../Config/FirebaseFirestore";
+import { getCurrentUser } from "../../Config/FirebaseAuthentication";
+import { useRouter } from "next/router";
 
-export default function EditPages() {
+export default function EditPages(props) {
+  const router = useRouter();
   const [activePage, setActivePage] = useState("step-1");
   const [editedLinkKey, setEditedLinkKey] = useState(null);
   const [pageData, setPageData] = useState({
@@ -62,6 +66,12 @@ export default function EditPages() {
 
   const submitPage = () => {
     setActivePage("publish");
+  };
+
+  const onSubmitPage = async () => {
+    await storePage(props.user.uid, pageData);
+
+    await router.push(`/publish?page=${pageData.link}`);
   };
 
   return (
@@ -123,9 +133,28 @@ export default function EditPages() {
           <PublishPageComponent
             pageData={pageData}
             setActivePage={setActivePage}
+            onSubmitPage={onSubmitPage}
           />
         )}
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  let user = getCurrentUser(context);
+
+  if (user === null) {
+    return {
+      redirect: {
+        destination: "/auth/sign-in",
+      },
+    };
+  }
+
+  return {
+    props: {
+      user: user,
+    },
+  };
 }

@@ -41,6 +41,9 @@ export default function CreatePage(props) {
               if (e.target.value.includes(" ")) {
                 e.target.value = e.target.value.replaceAll(" ", "_");
               }
+              if (e.target.value.includes("/")) {
+                e.target.value = e.target.value.replaceAll("/", "");
+              }
             }}
           />
           {errors.url && (
