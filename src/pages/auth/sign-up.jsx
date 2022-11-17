@@ -11,14 +11,18 @@ import { useRouter } from "next/router";
 
 const formSchema = yup
   .object({
-    email: yup.string().email().required("Email wajib diisi!"),
+    email: yup
+      .string()
+      .email("Please enter a valid email address (Ex: johndoe@domain.com)")
+      .required("Email is Required"),
     password: yup
       .string()
-      .min(6, "Minimal 6 karakter!")
-      .required("Password wajib diisi!"),
+      .min(6, "Minimum Password is 6 Characters")
+      .required("Password is Required"),
     passwordConfirmation: yup
       .string()
-      .oneOf([yup.ref("password"), null], "Password harus sama"),
+      .required("Confirm Password is required")
+      .oneOf([yup.ref("password"), null], "Please enter the same value again."),
   })
   .required();
 

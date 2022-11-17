@@ -9,19 +9,25 @@ import {
   getCurrentUser,
 } from "../../Config/FirebaseAuthentication";
 import { setCookie } from "nookies";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
 
 const formSchema = yup
   .object({
-    email: yup.string().email().required("Email wajib diisi!"),
+    email: yup
+      .string()
+      .email("Please enter a valid email address (Ex: johndoe@domain.com)")
+      .required("Email is Required"),
     password: yup
       .string()
-      .min(6, "Minimal 6 karakter!")
-      .required("Password wajib diisi!"),
+      .min(6, "Minimum Password is 6 Characters")
+      .required("Password is Required"),
   })
   .required();
 
 export default function LoginPage() {
   const router = useRouter();
+  const MySwal = withReactContent(Swal);
   const [loginErrorMessage, setLoginErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
@@ -41,15 +47,30 @@ export default function LoginPage() {
         await router.push("/pages/edit");
       })
       .catch((e) => {
+        let title;
         switch (e.code) {
           case "auth/wrong-password":
-            setLoginErrorMessage("Wrong email or password");
+            title = (
+              <div className="h4">
+                Email or Password incorrect. <br /> Please try again later.
+              </div>
+            );
             break;
 
           default:
-            setLoginErrorMessage("There is something wrong with the server!");
+            title = (
+              <div className="h4">
+                There is something wrong with the server, or the error code is
+                not mapped yet!
+              </div>
+            );
             break;
         }
+        MySwal.fire({
+          title: title,
+        }).then((r) => {
+          console.log("Email warning", e.code);
+        });
       });
   };
 
