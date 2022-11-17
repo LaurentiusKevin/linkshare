@@ -4,7 +4,10 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import { useRouter } from "next/router";
-import { authSignIn } from "../../Config/FirebaseAuthentication";
+import {
+  authSignIn,
+  getCurrentUser,
+} from "../../Config/FirebaseAuthentication";
 import { setCookie } from "nookies";
 
 const formSchema = yup
@@ -19,7 +22,7 @@ const formSchema = yup
 
 export default function LoginPage() {
   const router = useRouter();
-  const [loginErrorMessage, setLoginErrorMessage] = useState("null");
+  const [loginErrorMessage, setLoginErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
   const {
@@ -34,10 +37,7 @@ export default function LoginPage() {
     setLoginErrorMessage("");
     authSignIn(data)
       .then(async (r) => {
-        setCookie(null, "email", r.user.email, { path: "/" });
-        setCookie(null, "accessToken", r.user.accessToken, { path: "/" });
-        setCookie(null, "uid", r.user.uid, { path: "/" });
-        setCookie(null, "profile", JSON.stringify(r.user), { path: "/" });
+        setCookie(null, "user", JSON.stringify(r.user), { path: "/" });
         await router.push("/pages/edit");
       })
       .catch((e) => {
@@ -66,6 +66,9 @@ export default function LoginPage() {
             </p>
           </div>
         </div>
+        {loginErrorMessage !== "" && (
+          <div className="alert alert-danger">{loginErrorMessage}</div>
+        )}
         <form onSubmit={handleSubmit(onSubmit)}>
           <div className="mb-3">
             <label className="form-label mb-0 text-primary-custom fw-bold">
@@ -116,4 +119,20 @@ export default function LoginPage() {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  let user = getCurrentUser();
+
+  if (user !== null) {
+    return {
+      redirect: {
+        destination: "/pages/edit",
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 }

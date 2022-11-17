@@ -3,7 +3,10 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
-import { authRegister } from "../../Config/FirebaseAuthentication";
+import {
+  authRegister,
+  getCurrentUser,
+} from "../../Config/FirebaseAuthentication";
 import { useRouter } from "next/router";
 
 const formSchema = yup
@@ -112,4 +115,20 @@ export default function SignUpPage() {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  let user = await getCurrentUser();
+
+  if (user !== null) {
+    return {
+      redirect: {
+        destination: "/pages/edit",
+      },
+    };
+  }
+
+  return {
+    props: {},
+  };
 }
