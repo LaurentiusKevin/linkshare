@@ -16,7 +16,7 @@ export default function PublishPageComponent(props) {
       >
         <FontAwesomeIcon icon={faCaretLeft} /> back
       </button>
-      <div className="row justify-content-center">
+      <div className="row justify-content-center my-3">
         <div className="col-10">
           <div
             className="card card-style"

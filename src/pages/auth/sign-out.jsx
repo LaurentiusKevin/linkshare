@@ -6,17 +6,11 @@ export default function AuthLogout() {
 }
 
 export async function getServerSideProps(context) {
-  nookies.destroy(context, "accessToken", {
-    path: "/",
-  });
-  nookies.destroy(context, "email", {
-    path: "/",
-  });
-  nookies.destroy(context, "uid", {
+  nookies.destroy(context, "user", {
     path: "/",
   });
 
-  let data = authSignOut();
+  await authSignOut();
 
   return {
     redirect: {
