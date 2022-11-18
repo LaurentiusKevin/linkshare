@@ -12,18 +12,16 @@ import { setCookie } from "nookies";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 
-const formSchema = yup
-  .object({
-    email: yup
-      .string()
-      .email("Please enter a valid email address (Ex: johndoe@domain.com)")
-      .required("Email is Required"),
-    password: yup
-      .string()
-      .min(6, "Minimum Password is 6 Characters")
-      .required("Password is Required"),
-  })
-  .required();
+const formSchema = yup.object({
+  email: yup
+    .string()
+    .required("Email is Required")
+    .email("Please enter a valid email address (Ex: johndoe@domain.com)"),
+  password: yup
+    .string()
+    .required("Password is Required")
+    .min(6, "Minimum Password is 6 Characters"),
+});
 
 export default function LoginPage() {
   const router = useRouter();

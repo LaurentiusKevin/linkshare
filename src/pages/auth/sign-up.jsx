@@ -9,22 +9,20 @@ import {
 } from "../../Config/FirebaseAuthentication";
 import { useRouter } from "next/router";
 
-const formSchema = yup
-  .object({
-    email: yup
-      .string()
-      .email("Please enter a valid email address (Ex: johndoe@domain.com)")
-      .required("Email is Required"),
-    password: yup
-      .string()
-      .min(6, "Minimum Password is 6 Characters")
-      .required("Password is Required"),
-    passwordConfirmation: yup
-      .string()
-      .required("Confirm Password is required")
-      .oneOf([yup.ref("password"), null], "Please enter the same value again."),
-  })
-  .required();
+const formSchema = yup.object({
+  email: yup
+    .string()
+    .required("Email is Required")
+    .email("Please enter a valid email address (Ex: johndoe@domain.com)"),
+  password: yup
+    .string()
+    .required("Password is Required")
+    .min(6, "Minimum Password is 6 Characters"),
+  passwordConfirmation: yup
+    .string()
+    .required("Confirm Password is required")
+    .oneOf([yup.ref("password"), null], "Please enter the same value again."),
+});
 
 export default function SignUpPage() {
   const router = useRouter();
