@@ -9,8 +9,6 @@ import {
   getCurrentUser,
 } from "../../Config/FirebaseAuthentication";
 import { setCookie } from "nookies";
-import withReactContent from "sweetalert2-react-content";
-import Swal from "sweetalert2";
 
 const formSchema = yup.object({
   email: yup
@@ -23,9 +21,8 @@ const formSchema = yup.object({
     .min(6, "Minimum Password is 6 Characters"),
 });
 
-export default function LoginPage() {
+export default function LoginPage(props) {
   const router = useRouter();
-  const MySwal = withReactContent(Swal);
   const [loginErrorMessage, setLoginErrorMessage] = useState("");
   const [showPassword, setShowPassword] = useState(false);
 
@@ -64,10 +61,10 @@ export default function LoginPage() {
             );
             break;
         }
-        MySwal.fire({
-          title: title,
+        props.MySwal.fire({
+          title: e.code,
         }).then((r) => {
-          console.log("Email warning", e.code);
+          console.log("Sign In warning", e.code);
         });
       });
   };

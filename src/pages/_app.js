@@ -7,6 +7,8 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { useRouter } from "next/router";
 import { QueryClient, QueryClientProvider } from "react-query";
+import withReactContent from "sweetalert2-react-content";
+import Swal from "sweetalert2";
 
 config.autoAddCss = false;
 
@@ -16,6 +18,7 @@ function MyApp({ Component, pageProps }) {
     title: "Solutech PWA Demo NextJs",
   });
   const queryClient = new QueryClient();
+  const MySwal = withReactContent(Swal);
 
   pageProps = {
     ...pageProps,
@@ -25,6 +28,7 @@ function MyApp({ Component, pageProps }) {
       asPath,
       back,
     },
+    MySwal,
   };
 
   return (

@@ -24,7 +24,7 @@ const formSchema = yup.object({
     .oneOf([yup.ref("password"), null], "Please enter the same value again."),
 });
 
-export default function SignUpPage() {
+export default function SignUpPage(props) {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -43,7 +43,11 @@ export default function SignUpPage() {
         await router.push("/auth/sign-in");
       })
       .catch((e) => {
-        alert("Something wrong");
+        props.MySwal.fire({
+          title: e.code,
+        }).then((r) => {
+          console.log("Sign Up warning", e.code);
+        });
       });
   };
 
