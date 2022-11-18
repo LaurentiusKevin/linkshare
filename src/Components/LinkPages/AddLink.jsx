@@ -130,14 +130,6 @@ export default function AddLinkComponents(props) {
             ))}
           </div>
         </ModalBody>
-        {/*<ModalFooter>*/}
-        {/*  <button className="btn btn" onClick={toggle}>*/}
-        {/*    Do Something*/}
-        {/*  </button>{' '}*/}
-        {/*  <Button color="secondary" onClick={toggle}>*/}
-        {/*    Cancel*/}
-        {/*  </Button>*/}
-        {/*</ModalFooter>*/}
       </Modal>
     </>
   );
