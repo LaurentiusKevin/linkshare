@@ -92,7 +92,8 @@ export default function EditPages(props) {
               }
               onClick={() => setActivePage("step-1")}
             >
-              <span className="fw-bolder">Step 1</span>
+              <div className="fw-bolder">Step 1</div>
+              <div>Page Info</div>
             </button>
             <button
               type="button"
@@ -104,7 +105,8 @@ export default function EditPages(props) {
               }
               onClick={() => setActivePage("step-2-list")}
             >
-              <span className="fw-bolder">Step 2</span>
+              <div className="fw-bolder">Step 2</div>
+              <div>Add Link</div>
             </button>
           </div>
         </div>
@@ -122,6 +124,7 @@ export default function EditPages(props) {
 
         {activePage === "step-2-add" && (
           <AddLinkComponents
+            {...props}
             onSubmit={createLinkSubmit}
             editedLinkKey={editedLinkKey}
             links={pageData.link}

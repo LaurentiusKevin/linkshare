@@ -44,7 +44,8 @@ export default function SignUpPage(props) {
       })
       .catch((e) => {
         props.MySwal.fire({
-          title: e.code,
+          title: "Something wrong",
+          text: e.code,
         }).then((r) => {
           console.log("Sign Up warning", e.code);
         });

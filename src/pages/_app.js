@@ -1,16 +1,55 @@
 import React, { useState } from "react";
-// import "../../styles/bootstrap.css";
 import "bootstrap/dist/css/bootstrap.css";
 import "../../styles/style.css";
 import "../../styles/globals.css";
-import { config } from "@fortawesome/fontawesome-svg-core";
+import { config, library } from "@fortawesome/fontawesome-svg-core";
 import "@fortawesome/fontawesome-svg-core/styles.css";
 import { useRouter } from "next/router";
 import { QueryClient, QueryClientProvider } from "react-query";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
+import {
+  faBurger,
+  faCartShopping,
+  faEnvelope,
+  faFontAwesome,
+  faLocationDot,
+  faPhone,
+  fas,
+  faShop,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+  fab,
+  faFacebook,
+  faInstagram,
+  faLinkedin,
+  faShopify,
+  faTiktok,
+  faTwitter,
+  faWordpress,
+  faYoutube,
+} from "@fortawesome/free-brands-svg-icons";
 
 config.autoAddCss = false;
+library.add(
+  faFontAwesome,
+  fas,
+  fab,
+  faFacebook,
+  faTwitter,
+  faLinkedin,
+  faInstagram,
+  faTiktok,
+  faWordpress,
+  faBurger,
+  faCartShopping,
+  faShopify,
+  faPhone,
+  faLocationDot,
+  faYoutube,
+  faShop,
+  faEnvelope
+);
 
 function MyApp({ Component, pageProps }) {
   const { asPath, back } = useRouter();
@@ -19,6 +58,22 @@ function MyApp({ Component, pageProps }) {
   });
   const queryClient = new QueryClient();
   const MySwal = withReactContent(Swal);
+
+  const iconList = [
+    "fa-solid fa-phone",
+    "fab fa-facebook",
+    "fab fa-twitter",
+    "fab fa-linkedin",
+    "fab fa-instagram",
+    "fab fa-tiktok",
+    "fab fa-wordpress",
+    "fa-solid fa-burger",
+    "fab fa-shopify",
+    "fa-solid fa-location-dot",
+    "fab fa-youtube",
+    "fa-solid fa-shop",
+    "fa-solid fa-envelope",
+  ];
 
   pageProps = {
     ...pageProps,
@@ -29,6 +84,7 @@ function MyApp({ Component, pageProps }) {
       back,
     },
     MySwal,
+    iconList,
   };
 
   return (

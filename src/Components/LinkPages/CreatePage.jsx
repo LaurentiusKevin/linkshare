@@ -2,13 +2,11 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
-const formSchema = yup
-  .object({
-    url: yup.string().required("URL wajib diisi!"),
-    name: yup.string().required("Nama Halaman wajib diisi!"),
-    description: yup.string().required("Deskripsi wajib diisi!"),
-  })
-  .required();
+const formSchema = yup.object({
+  url: yup.string().required("Link URL is Required"),
+  name: yup.string().required("Pages name is required"),
+  description: yup.string().required("Description is Required"),
+});
 
 export default function CreatePage(props) {
   const { onSubmit } = props;

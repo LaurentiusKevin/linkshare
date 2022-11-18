@@ -2,14 +2,16 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useEffect, useState } from "react";
-import { Button, Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
 
 export default function AddLinkComponents(props) {
+  const [modal, setModal] = useState(false);
+  const toggle = () => setModal(!modal);
   const { onSubmit, editedLinkKey, links, deleteLink } = props;
   const MySwal = withReactContent(Swal);
-  const [deleteModal, setDeleteModal] = useState(false);
 
   const formSchema = yup.object({
     linkLabel: yup.string().required("Link Label wajib diisi"),
@@ -87,6 +89,12 @@ export default function AddLinkComponents(props) {
           <label className="form-label mb-0 text-primary-custom fw-bold">
             Link Icon <span className="text-danger">*</span>
           </label>
+          <div className="d-flex gap-4 px-3 align-middle">
+            <FontAwesomeIcon icon="fab fa-facebook" size="3x" />
+            <button type="button" className="btn bg-gray-dark" onClick={toggle}>
+              Choose
+            </button>
+          </div>
         </div>
         {editedLinkKey !== null ? (
           <div className="d-flex gap-3">
@@ -107,19 +115,30 @@ export default function AddLinkComponents(props) {
           </button>
         )}
       </form>
-
-      {/*<Modal isOpen={deleteModal} toggle={deleteModalToggle} animation={false}>*/}
-      {/*  <ModalHeader toggle={deleteModalToggle}>Modal title</ModalHeader>*/}
-      {/*  <ModalBody>Are you sure to delete this link?</ModalBody>*/}
-      {/*  <ModalFooter>*/}
-      {/*    <Button color="danger" onClick={deleteLink}>*/}
-      {/*      Delete*/}
-      {/*    </Button>{" "}*/}
-      {/*    <Button color="secondary" onClick={deleteModalToggle}>*/}
-      {/*      Cancel*/}
-      {/*    </Button>*/}
-      {/*  </ModalFooter>*/}
-      {/*</Modal>*/}
+      <Modal isOpen={modal} toggle={toggle}>
+        <ModalHeader toggle={toggle}>Select Icon</ModalHeader>
+        <ModalBody>
+          <div className="d-flex gap-3 flex-wrap justify-content-center">
+            {props.iconList.map((item, key) => (
+              <button
+                key={`icon-list-${key}`}
+                type="button"
+                className="btn btn-primary"
+              >
+                <FontAwesomeIcon key={key} icon={item} size="3x" />
+              </button>
+            ))}
+          </div>
+        </ModalBody>
+        {/*<ModalFooter>*/}
+        {/*  <button className="btn btn" onClick={toggle}>*/}
+        {/*    Do Something*/}
+        {/*  </button>{' '}*/}
+        {/*  <Button color="secondary" onClick={toggle}>*/}
+        {/*    Cancel*/}
+        {/*  </Button>*/}
+        {/*</ModalFooter>*/}
+      </Modal>
     </>
   );
 }

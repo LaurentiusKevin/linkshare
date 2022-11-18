@@ -62,7 +62,8 @@ export default function LoginPage(props) {
             break;
         }
         props.MySwal.fire({
-          title: e.code,
+          title: "Something wrong",
+          text: e.code,
         }).then((r) => {
           console.log("Sign In warning", e.code);
         });
