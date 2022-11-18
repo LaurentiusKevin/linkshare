@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { Modal, ModalBody, ModalFooter, ModalHeader } from "reactstrap";
+import { Modal, ModalBody, ModalHeader } from "reactstrap";
 
 export default function AddLinkComponents(props) {
   const [modal, setModal] = useState(false);
@@ -18,13 +18,16 @@ export default function AddLinkComponents(props) {
     linkUrl: yup
       .string()
       .url(`Gunakan format URL (contoh: ${window.location.href})`)
-      .required("Link URL wajib diisi"),
+      .required("Link URL is Required"),
+    linkIcon: yup.string().required("Link icon is Required"),
   });
 
   const {
     register,
     reset,
     handleSubmit,
+    setValue,
+    getValues,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(formSchema),
@@ -44,6 +47,11 @@ export default function AddLinkComponents(props) {
         deleteLink();
       }
     });
+  };
+
+  const handleSelectIcon = (icon) => {
+    setValue("linkIcon", icon);
+    toggle();
   };
 
   useEffect(() => {
@@ -90,11 +98,14 @@ export default function AddLinkComponents(props) {
             Link Icon <span className="text-danger">*</span>
           </label>
           <div className="d-flex gap-4 px-3 align-middle">
-            <FontAwesomeIcon icon="fab fa-facebook" size="3x" />
+            <FontAwesomeIcon icon={getValues().linkIcon} size="3x" />
             <button type="button" className="btn bg-gray-dark" onClick={toggle}>
               Choose
             </button>
           </div>
+          {errors.linkIcon && (
+            <div className="text-danger">{errors.linkIcon.message}</div>
+          )}
         </div>
         {editedLinkKey !== null ? (
           <div className="d-flex gap-3">
@@ -123,7 +134,10 @@ export default function AddLinkComponents(props) {
               <button
                 key={`icon-list-${key}`}
                 type="button"
-                className="btn btn-primary"
+                className="btn btn-outline-primary text-primary-custom"
+                onClick={() => {
+                  handleSelectIcon(item);
+                }}
               >
                 <FontAwesomeIcon key={key} icon={item} size="3x" />
               </button>
