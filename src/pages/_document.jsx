@@ -108,7 +108,7 @@ export default function DefaultDocument(props) {
         </div>
         <div data-menu-load="menu-footer.html"></div>
         <Script
-          id="global-custom-script"
+          id="bootstrap-script"
           src="/scripts/bootstrap.min.js"
           strategy="afterInteractive"
         />

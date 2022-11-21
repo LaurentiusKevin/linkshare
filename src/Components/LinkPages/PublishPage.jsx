@@ -5,9 +5,15 @@ import {
   faRobot,
 } from "@fortawesome/free-solid-svg-icons";
 import LinkCardComponent from "./LinkCard";
+import { useState } from "react";
+import * as url from "url";
+import Image from "next/image";
 
 export default function PublishPageComponent(props) {
   const { pageData, setActivePage, onSubmitPage } = props;
+  const [backgroundImage, setBackgroundImage] = useState({
+    background: `url(${pageData.backgroundImage})`,
+  });
 
   return (
     <>
@@ -19,19 +25,14 @@ export default function PublishPageComponent(props) {
       </button>
       <div className="row justify-content-center my-3">
         <div className="col-10">
-          <div
-            className="card card-style"
-            style={{
-              background:
-                "linear-gradient(155deg, rgba(248,246,247,1) 0%, rgba(211,210,208,1) 100%)",
-            }}
-          >
+          <div className="card card-style" style={backgroundImage}>
             <div className="content">
               <div className="d-flex justify-content-center">
-                <FontAwesomeIcon
-                  icon={faJetFighterUp}
-                  size="5x"
-                  className="my-5"
+                <Image
+                  src={pageData.logoImage}
+                  alt="Logo Image"
+                  width={100}
+                  height={100}
                 />
               </div>
               <div className="mt-3 mb-3 fw-bolder text-primary-custom h1 text-center">

@@ -24,6 +24,8 @@ export default function EditPages(props) {
       url: data.url,
       name: data.name,
       description: data.description,
+      logoImage: data.logoImage,
+      backgroundImage: data.backgroundImage,
     });
     setActivePage("step-2-list");
   };
