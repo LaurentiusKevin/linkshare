@@ -5,9 +5,11 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { useState } from "react";
 import {
   authRegister,
+  authSignIn,
   getCurrentUser,
 } from "../../Config/FirebaseAuthentication";
 import { useRouter } from "next/router";
+import { setCookie } from "nookies";
 
 const formSchema = yup.object({
   email: yup
@@ -39,8 +41,21 @@ export default function SignUpPage(props) {
   const onSubmit = (data) => {
     authRegister(data)
       .then(async (r) => {
-        alert("User registered");
-        await router.push("/auth/sign-in");
+        authSignIn(data)
+          .then(async (loginData) => {
+            setCookie(null, "user", JSON.stringify(loginData.user), {
+              path: "/",
+            });
+            await router.push("/pages/edit");
+          })
+          .catch((loginError) => {
+            props.MySwal.fire({
+              title: "Something wrong",
+              text: loginError.code,
+            }).then((r) => {
+              console.log("Sign In warning", loginError.code);
+            });
+          });
       })
       .catch((e) => {
         props.MySwal.fire({
