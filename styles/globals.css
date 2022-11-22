@@ -20,3 +20,12 @@
   background-color: #629aaa;
   color: white;
 }
+.text-primary-gradient {
+  background: linear-gradient(90deg, #ffdb4c, #684f31);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.bg-gradient-2 {
+  background: rgb(255,255,254);
+  background: linear-gradient(145deg, rgba(255,255,254,1) 0%, rgba(255,246,188,1) 100%);
+}

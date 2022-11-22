@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { getImage, uploadImage } from "../../Config/FirebaseStorage";
 
 const formSchema = yup.object({
@@ -17,6 +17,8 @@ export default function CreatePage(props) {
     logoImage: undefined,
     backgroundImage: undefined,
   });
+  const logoFileInput = useRef();
+  const backgroundFileInput = useRef();
 
   const {
     register,
@@ -103,17 +105,21 @@ export default function CreatePage(props) {
           <label className="form-label mb-0 text-primary-custom fw-bold">
             Logo Image <span className="text-danger">*</span>
           </label>
-          <div className="d-flex flex-column gap-2 align-items-center">
+          <div>
             <Image
-              src={imageFile.logoImage ?? "/images/pictures/3s.jpg"}
+              src={imageFile.logoImage ?? "/images/icons/20.png"}
               width={100}
               height={100}
-              className="border border-aqua-dark "
+              className="border border-aqua-dark"
               alt="logo-image"
+              onClick={() => {
+                logoFileInput.current.click();
+              }}
             />
             <input
               type="file"
-              className="form-control"
+              className="form-control d-none"
+              ref={logoFileInput}
               onChange={(e) => {
                 onFileChange(e, "logoImage");
               }}
@@ -127,17 +133,21 @@ export default function CreatePage(props) {
           <label className="form-label mb-0 text-primary-custom fw-bold">
             Background Image <span className="text-danger">*</span>
           </label>
-          <div className="d-flex flex-column gap-2 align-items-center">
+          <div>
             <Image
-              src={imageFile.backgroundImage ?? "/images/pictures/8l.jpg"}
-              width={300}
-              height={466}
+              src={imageFile.backgroundImage ?? "/images/icons/20.png"}
+              width={100}
+              height={100}
               className="border border-aqua-dark "
               alt="background-image"
+              onClick={() => {
+                backgroundFileInput.current.click();
+              }}
             />
             <input
               type="file"
-              className="form-control"
+              className="form-control d-none"
+              ref={backgroundFileInput}
               onChange={(e) => {
                 onFileChange(e, "backgroundImage");
               }}
