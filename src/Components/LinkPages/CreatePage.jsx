@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { getImage, uploadImage } from "../../Config/FirebaseStorage";
 
 const formSchema = yup.object({
@@ -13,6 +13,7 @@ const formSchema = yup.object({
 
 export default function CreatePage(props) {
   const { onSubmit } = props;
+  const [linkPrefix, setLinkPrefix] = useState("");
   const [imageFile, setImageFile] = useState({
     logoImage: undefined,
     backgroundImage: undefined,
@@ -51,6 +52,10 @@ export default function CreatePage(props) {
     });
   };
 
+  useEffect(() => {
+    setLinkPrefix(window.location.hostname);
+  }, []);
+
   return (
     <>
       <div className="h6 fw-bolder text-primary-custom">
@@ -63,19 +68,27 @@ export default function CreatePage(props) {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-3">
-          <input
-            {...register("url")}
-            type="text"
-            className="form-control"
-            onKeyUp={(e) => {
-              if (e.target.value.includes(" ")) {
-                e.target.value = e.target.value.replaceAll(" ", "_");
-              }
-              if (e.target.value.includes("/")) {
-                e.target.value = e.target.value.replaceAll("/", "");
-              }
-            }}
-          />
+          <div className="input-group">
+            <span
+              className="input-group-text bg-highlight-custom"
+              id="basic-addon3"
+            >
+              {linkPrefix}/
+            </span>
+            <input
+              {...register("url")}
+              type="text"
+              className="form-control"
+              onKeyUp={(e) => {
+                if (e.target.value.includes(" ")) {
+                  e.target.value = e.target.value.replaceAll(" ", "_");
+                }
+                if (e.target.value.includes("/")) {
+                  e.target.value = e.target.value.replaceAll("/", "");
+                }
+              }}
+            />
+          </div>
           {errors.url && (
             <div className="text-danger">{errors.url.message}</div>
           )}
