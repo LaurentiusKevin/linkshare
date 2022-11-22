@@ -33,9 +33,9 @@ export default function DefaultDocument(props) {
         {/*<link rel="manifest" href="/manifest.json" />*/}
       </Head>
       <body className="theme-light">
-        <div id="preloader">
-          <div className="spinner-border color-highlight" role="status"></div>
-        </div>
+        {/*<div id="preloader">*/}
+        {/*  <div className="spinner-border color-highlight" role="status"></div>*/}
+        {/*</div>*/}
         <div id="page">
           <div className="header header-fixed header-logo-center">
             <Link href="/" className="header-title">
@@ -107,16 +107,16 @@ export default function DefaultDocument(props) {
           </div>
         </div>
         <div data-menu-load="menu-footer.html"></div>
-        <Script
-          id="bootstrap-script"
-          src="/scripts/bootstrap.min.js"
-          strategy="afterInteractive"
-        />
-        <Script
-          id="global-custom-script"
-          src="/scripts/custom.js"
-          strategy="afterInteractive"
-        />
+        {/*<Script*/}
+        {/*  id="bootstrap-script"*/}
+        {/*  src="/scripts/bootstrap.min.js"*/}
+        {/*  strategy="afterInteractive"*/}
+        {/*/>*/}
+        {/*<Script*/}
+        {/*  id="global-custom-script"*/}
+        {/*  src="/scripts/custom.js"*/}
+        {/*  strategy="afterInteractive"*/}
+        {/*/>*/}
       </body>
     </Html>
   );

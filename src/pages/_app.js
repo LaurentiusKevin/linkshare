@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { QueryClient, QueryClientProvider } from "react-query";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
+
 import {
   faBurger,
   faCartShopping,
