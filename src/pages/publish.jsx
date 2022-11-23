@@ -12,7 +12,9 @@ import Confetti from "react-confetti";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 
-export default function PublishPage() {
+export default function PublishPage(props) {
+  const { Toast } = props;
+
   const router = useRouter();
   const [domainName, setDomainName] = useState("");
   const [confettiConfig, setConfettiConfig] = useState({
@@ -96,6 +98,10 @@ export default function PublishPage() {
             id="button-addon2"
             onClick={() => {
               navigator.clipboard.writeText(domainName);
+              Toast.fire({
+                icon: "success",
+                title: "Link copied to your clipboard",
+              });
             }}
           >
             <FontAwesomeIcon icon={faCopy} />

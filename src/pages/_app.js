@@ -59,6 +59,17 @@ function MyApp({ Component, pageProps }) {
   });
   const queryClient = new QueryClient();
   const MySwal = withReactContent(Swal);
+  const Toast = Swal.mixin({
+    toast: true,
+    position: "top-end",
+    showConfirmButton: false,
+    timer: 3000,
+    timerProgressBar: true,
+    didOpen: (toast) => {
+      toast.addEventListener("mouseenter", Swal.stopTimer);
+      toast.addEventListener("mouseleave", Swal.resumeTimer);
+    },
+  });
 
   const iconList = [
     "fa-solid fa-phone",
@@ -86,6 +97,7 @@ function MyApp({ Component, pageProps }) {
     },
     MySwal,
     iconList,
+    Toast,
   };
 
   return (
