@@ -2,7 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRobot } from "@fortawesome/free-solid-svg-icons";
 
 export default function LinkCardComponent(props) {
-  const { label, keyData, editLink } = props;
+  const { label, keyData, editLink, linkIcon } = props;
+  console.log(props);
 
   return (
     <div
@@ -17,7 +18,7 @@ export default function LinkCardComponent(props) {
     >
       <div className="content">
         <div className="d-flex gap-3">
-          <FontAwesomeIcon icon={faRobot} size="2x" className="text-white" />
+          <FontAwesomeIcon icon={linkIcon} size="2x" className="text-white" />
           <div className="text-white fw-bolder">{label}</div>
         </div>
       </div>

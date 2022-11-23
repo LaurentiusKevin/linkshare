@@ -1,12 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCaretLeft,
-  faJetFighterUp,
-  faRobot,
-} from "@fortawesome/free-solid-svg-icons";
+import { faCaretLeft, faRobot } from "@fortawesome/free-solid-svg-icons";
 import LinkCardComponent from "./LinkCard";
 import { useState } from "react";
-import * as url from "url";
 import Image from "next/image";
 
 export default function PublishPageComponent(props) {
@@ -47,6 +42,7 @@ export default function PublishPageComponent(props) {
                   keyData={key}
                   label={item.linkLabel}
                   icon={faRobot}
+                  linkIcon={item.linkIcon}
                 />
               ))}
             </div>

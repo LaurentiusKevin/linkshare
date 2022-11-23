@@ -73,7 +73,7 @@ export default function EditPages(props) {
   const onSubmitPage = async () => {
     await storePage(props.user.uid, pageData);
 
-    await router.push(`/publish?page=${pageData.link}`);
+    await router.push(`/publish?page=${pageData.url}`);
   };
 
   return (

@@ -8,12 +8,13 @@ import {
   faTwitter,
   faWhatsapp,
 } from "@fortawesome/free-brands-svg-icons";
-import useWindowSize from "react-use/lib/useWindowSize";
 import Confetti from "react-confetti";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 export default function PublishPage() {
-  // const { width, height } = useWindowSize();
+  const router = useRouter();
+  const [domainName, setDomainName] = useState("");
   const [confettiConfig, setConfettiConfig] = useState({
     width: 0,
     height: 0,
@@ -25,6 +26,7 @@ export default function PublishPage() {
   });
 
   useEffect(() => {
+    setDomainName(window.location.host + "/page/" + router.query.page);
     const { innerWidth: width, innerHeight: height } = window;
     setConfettiConfig({
       ...confettiConfig,
@@ -75,7 +77,7 @@ export default function PublishPage() {
           <div className="h3 text-primary-custom lh-2 fw-bolder">
             Published
             <br /> Your page is online, share it
-            <br /> to let the world knows ?
+            <br /> to let the world knows
           </div>
         </div>
         <label className="font-18 fw-bolder text-primary-custom lh-2">
@@ -85,11 +87,16 @@ export default function PublishPage() {
           <input
             type="text"
             className="form-control bg-highlight-custom text-white fs-5"
+            value={domainName}
+            readOnly
           />
           <button
             className="btn btn-highlight"
             type="button"
             id="button-addon2"
+            onClick={() => {
+              navigator.clipboard.writeText(domainName);
+            }}
           >
             <FontAwesomeIcon icon={faCopy} />
           </button>
