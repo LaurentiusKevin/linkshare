@@ -28,7 +28,7 @@ export default function PublishPage(props) {
   });
 
   useEffect(() => {
-    setDomainName(window.location.host + "/page/" + router.query.page);
+    setDomainName(window.location.host + "/pages/" + router.query.page);
     const { innerWidth: width, innerHeight: height } = window;
     setConfettiConfig({
       ...confettiConfig,

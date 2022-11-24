@@ -69,17 +69,11 @@ export default function DefaultDocument(props) {
 
           <div id="footer-bar" className="footer-bar-6">
             <BottomNavbar
-              href="/feature"
+              href="/dashboard"
               title="Features"
               icon={faHomeAlt}
               urlPath={props.asPath}
             />
-            {/*<BottomNavbar*/}
-            {/*  href="/index-pages"*/}
-            {/*  title="Pages"*/}
-            {/*  icon={faFile}*/}
-            {/*  urlPath={props.asPath}*/}
-            {/*/>*/}
             <BottomNavbar
               href="/"
               title="Welcome"
@@ -95,12 +89,6 @@ export default function DefaultDocument(props) {
               icon={faCog}
               urlPath={props.asPath}
             />
-            {/*<BottomNavbar*/}
-            {/*  href="/profile"*/}
-            {/*  title="Profile"*/}
-            {/*  icon={faUser}*/}
-            {/*  urlPath={props.asPath}*/}
-            {/*/>*/}
           </div>
 
           <div className="page-content header-clear-medium">

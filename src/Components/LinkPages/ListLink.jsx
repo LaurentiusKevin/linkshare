@@ -37,6 +37,7 @@ export default function ListLinkComponent(props) {
                 icon={faRobot}
                 editLink={editLink}
                 linkIcon={item.linkIcon}
+                linkUrl={item.linkUrl}
               />
             ))}
           </>
