@@ -3,9 +3,11 @@ import BottomNavbar from "../Components/Navbar/BottomNavbar";
 import {
   faCamera,
   faChevronLeft,
+  faCog,
   faFile,
   faHomeAlt,
   faLayerGroup,
+  faPlus,
   faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import Script from "next/script";
@@ -69,36 +71,36 @@ export default function DefaultDocument(props) {
             <BottomNavbar
               href="/feature"
               title="Features"
-              icon={faLayerGroup}
+              icon={faHomeAlt}
               urlPath={props.asPath}
             />
-            <BottomNavbar
-              href="/index-pages"
-              title="Pages"
-              icon={faFile}
-              urlPath={props.asPath}
-            />
+            {/*<BottomNavbar*/}
+            {/*  href="/index-pages"*/}
+            {/*  title="Pages"*/}
+            {/*  icon={faFile}*/}
+            {/*  urlPath={props.asPath}*/}
+            {/*/>*/}
             <BottomNavbar
               href="/"
               title="Welcome"
               className="circle-nav"
               iconColor="white"
-              icon={faHomeAlt}
+              icon={faPlus}
               urlPath={props.asPath}
               circleNav={true}
             />
             <BottomNavbar
               href="/index-projects"
               title="Projects"
-              icon={faCamera}
+              icon={faCog}
               urlPath={props.asPath}
             />
-            <BottomNavbar
-              href="/profile"
-              title="Profile"
-              icon={faUser}
-              urlPath={props.asPath}
-            />
+            {/*<BottomNavbar*/}
+            {/*  href="/profile"*/}
+            {/*  title="Profile"*/}
+            {/*  icon={faUser}*/}
+            {/*  urlPath={props.asPath}*/}
+            {/*/>*/}
           </div>
 
           <div className="page-content header-clear-medium">
