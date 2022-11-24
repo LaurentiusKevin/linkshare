@@ -7,6 +7,8 @@ export const storePage = async (uid, page) => {
     name: page.name,
     description: page.description,
     link: page.link,
+    logoImage: page.logoImage,
+    backgroundImage: page.backgroundImage,
   });
 };
 
