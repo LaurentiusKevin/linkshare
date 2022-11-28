@@ -8,7 +8,7 @@ export default function LinkCardComponent(props) {
     return (
       <div
         key={keyData}
-        className="card card-style"
+        className="card"
         style={{ backgroundColor: "#0b434c" }}
         onClick={() => {
           if (editLink instanceof Function) {
@@ -16,7 +16,7 @@ export default function LinkCardComponent(props) {
           }
         }}
       >
-        <div className="content">
+        <div className="card-body">
           <div className="d-flex gap-3">
             <FontAwesomeIcon icon={linkIcon} size="2x" className="text-white" />
             <div className="text-white fw-bolder">{label}</div>

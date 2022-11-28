@@ -58,12 +58,13 @@ export default function SignUpPage(props) {
           });
       })
       .catch((e) => {
-        props.MySwal.fire({
-          title: "Something wrong",
-          text: e.code,
-        }).then((r) => {
-          console.log("Sign Up warning", e.code);
-        });
+        let message = e.code === "auth/email-already-in-use" ? 'Email Exists' : e.code
+          props.MySwal.fire({
+            title: "Something wrong",
+            text: 'Email Exists',
+          }).then((r) => {
+            console.log("Sign Up warning", e.code);
+          });
       });
   };
 

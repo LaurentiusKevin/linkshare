@@ -46,6 +46,10 @@ export default function PublishPage(props) {
     return () => clearTimeout(confettyId);
   }, []);
 
+  const dashboard = async () => {
+    await router.push(`/dashboard`);
+  };
+
   return (
     <div className="row justify-content-center px-3 pt-5">
       <div className="col-md-6 col-lg-4">
@@ -152,12 +156,14 @@ export default function PublishPage(props) {
             />
           </button>
         </div>
-        <button className="btn btn-primary btn-full w-100 mb-3">
+        <button  className="btn btn-primary btn-full w-100 mb-3" onClick={dashboard}>
+          {/* <Link href="/dashboard" className="text-primary-custom"> */}
           Go to Dashboard
+          {/* </Link> */}
         </button>
-        <button className="btn btn-secondary btn-full w-100">
+        {/* <button className="btn btn-secondary btn-full w-100">
           Back to Home
-        </button>
+        </button> */}
       </div>
     </div>
   );

@@ -84,8 +84,8 @@ export default function DefaultDocument(props) {
               circleNav={true}
             />
             <BottomNavbar
-              href="/index-projects"
-              title="Projects"
+              href="/settings"
+              title="Settings"
               icon={faCog}
               urlPath={props.asPath}
             />
