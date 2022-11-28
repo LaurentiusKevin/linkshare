@@ -8,6 +8,8 @@ export default function PublishPageComponent(props) {
   const { pageData, setActivePage, onSubmitPage } = props;
   const [backgroundImage, setBackgroundImage] = useState({
     background: `url(${pageData.backgroundImage})`,
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "contain",
   });
 
   return (
