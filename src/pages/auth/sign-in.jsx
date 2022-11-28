@@ -39,7 +39,7 @@ export default function LoginPage(props) {
     authSignIn(data)
       .then(async (r) => {
         setCookie(null, "user", JSON.stringify(r.user), { path: "/" });
-        await router.push("/pages/edit");
+        await router.push("/dashboard");
       })
       .catch((e) => {
         let title;

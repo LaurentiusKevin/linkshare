@@ -1,5 +1,13 @@
 import { firebaseFirestore } from "./Firebase";
-import { doc, setDoc, getDoc } from "firebase/firestore";
+import {
+  doc,
+  setDoc,
+  getDoc,
+  getDocs,
+  query,
+  where,
+  collection,
+} from "firebase/firestore";
 
 export const storePage = async (uid, page) => {
   return setDoc(doc(firebaseFirestore, "pages", page.url), {
@@ -15,8 +23,19 @@ export const storePage = async (uid, page) => {
 export const getPage = async (page) => {
   try {
     const pageRef = doc(firebaseFirestore, "pages", page);
-    // console.log(page);
     return (await getDoc(pageRef)).data();
+  } catch (e) {
+    console.log("failed to get data: ", e);
+  }
+};
+
+export const getPagesByUid = async (uid) => {
+  try {
+    const pageRef = collection(firebaseFirestore, "pages");
+
+    const q = query(pageRef, where("uid", "==", uid));
+
+    return await getDocs(q);
   } catch (e) {
     console.log("failed to get data: ", e);
   }
