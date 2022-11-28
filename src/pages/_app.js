@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "bootstrap/dist/css/bootstrap.css";
 import "../../styles/style.css";
 import "../../styles/globals.css";
@@ -56,6 +56,7 @@ function MyApp({ Component, pageProps }) {
   const { asPath, back } = useRouter();
   const [pageInfo, setPageInfo] = useState({
     title: "Solutech PWA Demo NextJs",
+    domain: "",
   });
   const queryClient = new QueryClient();
   const MySwal = withReactContent(Swal);
@@ -99,6 +100,13 @@ function MyApp({ Component, pageProps }) {
     iconList,
     Toast,
   };
+
+  useEffect(() => {
+    setPageInfo({
+      ...pageInfo,
+      domain: window.location.hostname,
+    });
+  }, []);
 
   return (
     <React.Fragment>
