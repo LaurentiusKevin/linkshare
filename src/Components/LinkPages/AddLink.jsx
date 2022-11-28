@@ -19,7 +19,7 @@ export default function AddLinkComponents(props) {
       .string()
       .url(`Gunakan format URL (contoh: ${window.location.href})`)
       .required("Link URL is Required"),
-    linkIcon: yup.string().required("Link icon is Required"),
+    linkIcon: yup.string(),
   });
 
   const {
@@ -95,7 +95,7 @@ export default function AddLinkComponents(props) {
         </div>
         <div className="mb-3">
           <label className="form-label mb-0 text-primary-custom fw-bold">
-            Link Icon <span className="text-danger">*</span>
+            Link Icon
           </label>
           <div className="d-flex gap-4 px-3 align-middle">
             <FontAwesomeIcon icon={getValues().linkIcon} size="3x" />
