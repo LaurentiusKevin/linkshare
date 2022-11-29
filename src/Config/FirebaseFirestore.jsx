@@ -40,3 +40,20 @@ export const getPagesByUid = async (uid) => {
     console.log("failed to get data: ", e);
   }
 };
+
+export const getProfile = async (uid) => {
+  try {
+    const profileRef = doc(firebaseFirestore, "profile", uid);
+    return (await getDoc(profileRef)).data();
+  } catch (e) {
+    console.log("failed to get data: ", e);
+  }
+};
+
+export const storeProfile = async (profile) => {
+  return setDoc(doc(firebaseFirestore, "profile", profile.uid), {
+    username: profile.username,
+    email: profile.email,
+    link: profile.link,
+  });
+};

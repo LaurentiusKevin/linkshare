@@ -25,7 +25,7 @@ export default function SettingsPage(props) {
               style={{ minHeight: "30vh" }}
             >
               <div>
-                <div className="h3 fw-bold">Nama</div>
+                <div className="h3 fw-bold">{props.user.email}</div>
                 <div className="h5 fw-bold">{pageInfo.domain}/</div>
               </div>
             </div>
@@ -33,7 +33,7 @@ export default function SettingsPage(props) {
         </div>
 
         <div className="px-3 d-flex flex-column gap-3">
-          <Link href="/settings/profile">
+          <Link href="/settings/user-profile">
             <div className="d-flex justify-content-between">
               <div className="d-flex">
                 <div className="card card-style gradient-highlight p-3 my-0 ms-0">

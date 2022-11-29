@@ -3,7 +3,7 @@ import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
   signOut,
-  getAdditionalUserInfo,
+  updatePassword,
   getAuth,
 } from "firebase/auth";
 import nookies from "nookies";
@@ -32,4 +32,12 @@ export const getCurrentUser = (context) => {
   }
 
   return JSON.parse(data);
+};
+
+export const changePassword = ({ email, oldPassword, newPassword }) => {
+  return authSignIn({ email: email, password: oldPassword }).then(
+    (responseValidatePassword) => {
+      return updatePassword(getAuth().currentUser, newPassword);
+    }
+  );
 };
