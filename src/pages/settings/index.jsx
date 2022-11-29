@@ -25,7 +25,7 @@ export default function SettingsPage(props) {
               style={{ minHeight: "30vh" }}
             >
               <div>
-                <div className="h3 fw-bold">Nama</div>
+                <div className="h3 fw-bold">{props.user.email}</div>
                 <div className="h5 fw-bold">{pageInfo.domain}/</div>
               </div>
             </div>
