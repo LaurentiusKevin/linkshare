@@ -9,6 +9,8 @@ const formSchema = yup.object({
   url: yup.string().required("Link URL is Required"),
   name: yup.string().required("Pages name is required"),
   description: yup.string().required("Description is Required"),
+  logoImage: yup.mixed().required("Logo image is Required"),
+  backgroundImage: yup.mixed().required("Background image is Required"),
 });
 
 export default function CreatePage(props) {
@@ -139,6 +141,7 @@ export default function CreatePage(props) {
               }}
             />
             <input
+              {...register("logoImage")}
               type="file"
               className="form-control d-none"
               ref={logoFileInput}
@@ -167,6 +170,7 @@ export default function CreatePage(props) {
               }}
             />
             <input
+              {...register("backgroundImage")}
               type="file"
               className="form-control d-none"
               ref={backgroundFileInput}

@@ -14,7 +14,7 @@ export default function AddLinkComponents(props) {
   const MySwal = withReactContent(Swal);
 
   const formSchema = yup.object({
-    linkLabel: yup.string().required("Link Label wajib diisi"),
+    linkLabel: yup.string().required("Link Label is Required"),
     linkUrl: yup
       .string()
       .url(`Gunakan format URL (contoh: ${window.location.href})`)
