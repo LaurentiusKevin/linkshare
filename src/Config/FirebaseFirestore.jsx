@@ -11,6 +11,7 @@ import {
 
 export const storePage = async (uid, page) => {
   return setDoc(doc(firebaseFirestore, "pages", page.url), {
+    url: page.url,
     uid: uid,
     name: page.name,
     description: page.description,

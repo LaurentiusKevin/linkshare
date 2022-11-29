@@ -12,7 +12,7 @@ const formSchema = yup.object({
 });
 
 export default function CreatePage(props) {
-  const { onSubmit } = props;
+  const { pageData, onSubmit } = props;
   const [linkPrefix, setLinkPrefix] = useState("");
   const [imageFile, setImageFile] = useState({
     logoImage: undefined,
@@ -54,6 +54,15 @@ export default function CreatePage(props) {
 
   useEffect(() => {
     setLinkPrefix(window.location.hostname);
+    if (pageData.url !== "") {
+      setValue("url", pageData.url);
+      setValue("name", pageData.name);
+      setValue("description", pageData.description);
+      setImageFile({
+        logoImage: pageData.logoImage,
+        backgroundImage: pageData.backgroundImage,
+      });
+    }
   }, []);
 
   return (

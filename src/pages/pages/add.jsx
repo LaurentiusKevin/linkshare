@@ -7,7 +7,7 @@ import { storePage } from "../../Config/FirebaseFirestore";
 import { getCurrentUser } from "../../Config/FirebaseAuthentication";
 import { useRouter } from "next/router";
 
-export default function EditPages(props) {
+export default function AddPage(props) {
   const router = useRouter();
   const [activePage, setActivePage] = useState("step-1");
   const [editedLinkKey, setEditedLinkKey] = useState(null);
