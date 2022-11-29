@@ -70,13 +70,13 @@ export default function DefaultDocument(props) {
           <div id="footer-bar" className="footer-bar-6">
             <BottomNavbar
               href="/dashboard"
-              title="Features"
+              title="Dashboard "
               icon={faHomeAlt}
               urlPath={props.asPath}
             />
             <BottomNavbar
               href="/"
-              title="Welcome"
+              title="Create Page"
               className="circle-nav"
               iconColor="white"
               icon={faPlus}
