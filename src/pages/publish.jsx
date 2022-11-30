@@ -11,6 +11,8 @@ import {
 import Confetti from "react-confetti";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
+import Link from "next/link";
+import * as domain from "domain";
 
 export default function PublishPage(props) {
   const { Toast } = props;
@@ -113,34 +115,56 @@ export default function PublishPage(props) {
         </div>
 
         <div className="d-flex justify-content-center gap-3 mb-3">
-          <button className="btn">
+          <Link
+            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURI(
+              domainName
+            )}`}
+            className="btn"
+            target="_blank"
+          >
             <FontAwesomeIcon
-              className="text-secondary"
+              className="text-primary-custom"
               icon={faFacebook}
               size="2x"
             />
-          </button>
-          <button className="btn">
+          </Link>
+          <Link
+            href={`https://wa.me/?text=${encodeURI(domainName)}`}
+            target="_blank"
+            className="btn"
+          >
             <FontAwesomeIcon
-              className="text-secondary"
+              className="text-primary-custom"
               icon={faWhatsapp}
               size="2x"
             />
-          </button>
-          <button className="btn">
+          </Link>
+          <Link
+            href={`https://twitter.com/intent/tweet?text=${encodeURI(
+              domainName
+            )}`}
+            target="_blank"
+            className="btn"
+          >
             <FontAwesomeIcon
-              className="text-secondary"
+              className="text-primary-custom"
               icon={faTwitter}
               size="2x"
             />
-          </button>
-          <button className="btn">
+          </Link>
+          <Link
+            href={`https://social-plugins.line.me/lineit/share?url=${encodeURI(
+              domainName
+            )}`}
+            target="_blank"
+            className="btn"
+          >
             <FontAwesomeIcon
-              className="text-secondary"
+              className="text-primary-custom"
               icon={faLine}
               size="2x"
             />
-          </button>
+          </Link>
           <button className="btn">
             <FontAwesomeIcon
               className="text-secondary"
@@ -156,7 +180,10 @@ export default function PublishPage(props) {
             />
           </button>
         </div>
-        <button  className="btn btn-primary btn-full w-100 mb-3" onClick={dashboard}>
+        <button
+          className="btn btn-primary btn-full w-100 mb-3"
+          onClick={dashboard}
+        >
           {/* <Link href="/dashboard" className="text-primary-custom"> */}
           Go to Dashboard
           {/* </Link> */}
