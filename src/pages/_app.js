@@ -30,6 +30,7 @@ import {
   faWordpress,
   faYoutube,
 } from "@fortawesome/free-brands-svg-icons";
+import { AnimatePresence, motion } from "framer-motion";
 
 config.autoAddCss = false;
 library.add(
@@ -51,6 +52,16 @@ library.add(
   faShop,
   faEnvelope
 );
+
+const animationVariants = {
+  hidden: { opacity: 0 },
+  show: {
+    opacity: 1,
+    transition: {
+      delayChildren: 0.5,
+    },
+  },
+};
 
 function MyApp({ Component, pageProps }) {
   const { asPath, back } = useRouter();
@@ -111,7 +122,15 @@ function MyApp({ Component, pageProps }) {
   return (
     <React.Fragment>
       <QueryClientProvider client={queryClient}>
-        <Component {...pageProps} />
+        <AnimatePresence>
+          <motion.div
+            variants={animationVariants}
+            initial="hidden"
+            animate="show"
+          >
+            <Component {...pageProps} />
+          </motion.div>
+        </AnimatePresence>
       </QueryClientProvider>
     </React.Fragment>
   );

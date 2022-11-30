@@ -8,6 +8,7 @@ import { getCurrentUser } from "../../Config/FirebaseAuthentication";
 import { useRouter } from "next/router";
 
 export default function AddPage(props) {
+  const { MySwal } = props;
   const router = useRouter();
   const [activePage, setActivePage] = useState("step-1");
   const [editedLinkKey, setEditedLinkKey] = useState(null);
@@ -76,6 +77,12 @@ export default function AddPage(props) {
     await router.push(`/publish?page=${pageData.url}`);
   };
 
+  props = {
+    ...props,
+    pageData,
+    createPageSubmit,
+  };
+
   return (
     <div className="row justify-content-center px-3">
       <div className="col-md-6 col-lg-4">
@@ -113,7 +120,7 @@ export default function AddPage(props) {
           </div>
         </div>
 
-        {activePage === "step-1" && <CreatePage onSubmit={createPageSubmit} />}
+        {activePage === "step-1" && <CreatePage {...props} />}
 
         {activePage === "step-2-list" && (
           <ListLinkComponent

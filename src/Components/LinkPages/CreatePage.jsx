@@ -14,7 +14,7 @@ const formSchema = yup.object({
 });
 
 export default function CreatePage(props) {
-  const { pageData, onSubmit } = props;
+  const { pageData, createPageSubmit, MySwal } = props;
   const [linkPrefix, setLinkPrefix] = useState("");
   const [imageFile, setImageFile] = useState({
     logoImage: undefined,
@@ -33,9 +33,11 @@ export default function CreatePage(props) {
   });
 
   const onFileChange = (input, fileType) => {
+    MySwal.showLoading();
     let filename = `page-image/${self.crypto.randomUUID()}.jpg`;
     uploadImage(filename, input.target.files[0]).then((e) => {
       getImage(filename).then((url) => {
+        MySwal.close();
         if (fileType === "logoImage") {
           setValue("logoImage", url);
           setImageFile({
@@ -77,7 +79,7 @@ export default function CreatePage(props) {
         modify it later on &quot;Page Settings&quot;.
       </span>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(createPageSubmit)}>
         <div className="mb-3">
           <div className="input-group">
             <span

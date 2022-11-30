@@ -35,7 +35,7 @@ export default function DefaultDocument(props) {
         {/*<link rel="manifest" href="/manifest.json" />*/}
       </Head>
       <body className="theme-light">
-        {/*<div id="preloader">*/}
+        {/*<div id="swup">*/}
         {/*  <div className="spinner-border color-highlight" role="status"></div>*/}
         {/*</div>*/}
         <div id="page">
@@ -75,7 +75,7 @@ export default function DefaultDocument(props) {
               urlPath={props.asPath}
             />
             <BottomNavbar
-              href="/"
+              href="/pages/add"
               title="Create Page"
               className="circle-nav"
               iconColor="white"
