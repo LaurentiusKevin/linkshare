@@ -119,6 +119,7 @@ export default function AddPage(props) {
             </button>
           </div>
         </div>
+
         {activePage === "step-1" && <CreatePage {...props} />}
 
         {activePage === "step-2-list" && (
