@@ -181,8 +181,8 @@ export default function CreatePage(props) {
               }}
             />
           </div>
-          {errors.logoImage && (
-            <div className="text-danger">{errors.logoImage.message}</div>
+          {errors.backgroundImage && (
+            <div className="text-danger">{errors.backgroundImage.message}</div>
           )}
         </div>
         <button type="submit" className="btn w-100 btn-primary">

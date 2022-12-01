@@ -3,6 +3,7 @@ import Link from "next/link";
 
 export default function LinkCardComponent(props) {
   const { asLink, label, keyData, editLink, linkIcon, linkUrl } = props;
+  
 
   const LinkDetail = () => {
     return (
