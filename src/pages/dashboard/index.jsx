@@ -30,45 +30,47 @@ export default function DashboardPage(props) {
       <div className="col-md-6 col-lg-4">
         <div className="d-flex justify-content-between mb-4">
           <div className="h3 text-primary-custom fw-bold">Dashboard</div>
-          <Link href="/pages/edit" className="btn btn-primary">
+          <Link href="/pages/add" className="btn btn-primary">
             <FontAwesomeIcon icon={faPlus} className="mr-1" /> New page
           </Link>
         </div>
         <div className="row">
           {pagesData.map((item, key) => (
             <div key={`list-page-${key}`} className="col-sm-6 col-lg-6">
-              <div
-                className="card"
-                style={{
-                  background: `url(${item.backgroundImage})`,
-                }}
-              >
-                <div className="card-body">
-                  <div className="d-flex justify-content-center mt-3">
-                    <Image
-                      src={item.logoImage}
-                      alt="Logo Image"
-                      width={50}
-                      height={50}
-                    />
+              <Link href={`/pages/edit/${item.url}`}>
+                <div
+                  className="card"
+                  style={{
+                    background: `url(${item.backgroundImage})`,
+                  }}
+                >
+                  <div className="card-body">
+                    <div className="d-flex justify-content-center mt-3">
+                      <Image
+                        src={item.logoImage}
+                        alt="Logo Image"
+                        width={50}
+                        height={50}
+                      />
+                    </div>
+                    <div className="mt-3 mb-3 fw-bolder text-primary-custom h6 text-center">
+                      {item.name}
+                    </div>
+                    <div className="mb-3 fw-bold text-primary-custom text-center">
+                      {item.description}
+                    </div>
+                    {item.link.map((item, key) => (
+                      <LinkCardComponent
+                        key={key}
+                        keyData={key}
+                        label={item.linkLabel}
+                        icon={item.linkIcon}
+                        linkIcon={item.linkIcon}
+                      />
+                    ))}
                   </div>
-                  <div className="mt-3 mb-3 fw-bolder text-primary-custom h6 text-center">
-                    {item.name}
-                  </div>
-                  <div className="mb-3 fw-bold text-primary-custom text-center">
-                    {item.description}
-                  </div>
-                  {item.link.map((item, key) => (
-                    <LinkCardComponent
-                      key={key}
-                      keyData={key}
-                      label={item.linkLabel}
-                      icon={item.linkIcon}
-                      linkIcon={item.linkIcon}
-                    />
-                  ))}
                 </div>
-              </div>
+              </Link>
             </div>
           ))}
         </div>

@@ -29,6 +29,7 @@ export default function UserProfilePage(props) {
     register,
     handleSubmit,
     setValue,
+    getValues,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(formSchema),
@@ -73,6 +74,12 @@ export default function UserProfilePage(props) {
         <div className="card card-style">
           <div className="content">
             <form onSubmit={handleSubmit(onSubmit)}>
+              <div className="mb-3">
+                <label className="form-label mb-0 text-primary-custom fw-bold">
+                  Email
+                </label>
+                <div>{getValues("email")}</div>
+              </div>
               <div className="mb-3">
                 <label className="form-label mb-0 text-primary-custom fw-bold">
                   Username <span className="text-danger">*</span>

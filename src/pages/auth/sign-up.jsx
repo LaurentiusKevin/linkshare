@@ -46,7 +46,7 @@ export default function SignUpPage(props) {
             setCookie(null, "user", JSON.stringify(loginData.user), {
               path: "/",
             });
-            await router.push("/pages/edit");
+            await router.push("/pages/add");
           })
           .catch((loginError) => {
             props.MySwal.fire({
@@ -58,13 +58,14 @@ export default function SignUpPage(props) {
           });
       })
       .catch((e) => {
-        let message = e.code === "auth/email-already-in-use" ? 'Email Exists' : e.code
-          props.MySwal.fire({
-            title: "Something wrong",
-            text: 'Email Exists',
-          }).then((r) => {
-            console.log("Sign Up warning", e.code);
-          });
+        let message =
+          e.code === "auth/email-already-in-use" ? "Email Exists" : e.code;
+        props.MySwal.fire({
+          title: "Something wrong",
+          text: "Email Exists",
+        }).then((r) => {
+          console.log("Sign Up warning", e.code);
+        });
       });
   };
 
@@ -146,7 +147,7 @@ export async function getServerSideProps(context) {
   if (user !== null) {
     return {
       redirect: {
-        destination: "/pages/edit",
+        destination: "/pages/add",
       },
     };
   }

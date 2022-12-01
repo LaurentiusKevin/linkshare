@@ -14,7 +14,7 @@ const formSchema = yup.object({
 });
 
 export default function CreatePage(props) {
-  const { onSubmit } = props;
+  const { pageData, createPageSubmit, MySwal } = props;
   const [linkPrefix, setLinkPrefix] = useState("");
   const [imageFile, setImageFile] = useState({
     logoImage: undefined,
@@ -33,9 +33,11 @@ export default function CreatePage(props) {
   });
 
   const onFileChange = (input, fileType) => {
+    MySwal.showLoading();
     let filename = `page-image/${self.crypto.randomUUID()}.jpg`;
     uploadImage(filename, input.target.files[0]).then((e) => {
       getImage(filename).then((url) => {
+        MySwal.close();
         if (fileType === "logoImage") {
           setValue("logoImage", url);
           setImageFile({
@@ -56,6 +58,15 @@ export default function CreatePage(props) {
 
   useEffect(() => {
     setLinkPrefix(window.location.hostname);
+    if (pageData.url !== "") {
+      setValue("url", pageData.url);
+      setValue("name", pageData.name);
+      setValue("description", pageData.description);
+      setImageFile({
+        logoImage: pageData.logoImage,
+        backgroundImage: pageData.backgroundImage,
+      });
+    }
   }, []);
 
   return (
@@ -68,7 +79,7 @@ export default function CreatePage(props) {
         modify it later on &quot;Page Settings&quot;.
       </span>
 
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form onSubmit={handleSubmit(createPageSubmit)}>
         <div className="mb-3">
           <div className="input-group">
             <span
@@ -170,8 +181,8 @@ export default function CreatePage(props) {
               }}
             />
           </div>
-          {errors.logoImage && (
-            <div className="text-danger">{errors.logoImage.message}</div>
+          {errors.backgroundImage && (
+            <div className="text-danger">{errors.backgroundImage.message}</div>
           )}
         </div>
         <button type="submit" className="btn w-100 btn-primary">

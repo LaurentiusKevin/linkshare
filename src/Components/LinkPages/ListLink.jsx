@@ -1,17 +1,25 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPlus, faRobot } from "@fortawesome/free-solid-svg-icons";
+import CreatePage from "../../Components/LinkPages/CreatePage";
+import { useState } from "react";
+import { faBackspace, faBackward, faBackwardStep, faHandBackFist, faPlus, faRobot, faRotateBack, faStepBackward } from "@fortawesome/free-solid-svg-icons";
 import LinkCardComponent from "./LinkCard";
+// import useState from "../../pages/add";
 
 export default function ListLinkComponent(props) {
   const { setActivePage, links, editLink, submitPage } = props;
 
   return (
     <>
+    <a
+        type="button"
+        className="text-blue-custom h4 fw-bold"
+        onClick={() => setActivePage("step-1")}
+      ><FontAwesomeIcon icon={faBackward} /> back
+      </a>
       <div className="h6 fw-bolder text-primary-custom">
         Start adding your link
       </div>
       <div className="text-primary-custom">Add link to your page easily.</div>
-
       <button
         type="button"
         className="btn btn-primary"
@@ -19,7 +27,6 @@ export default function ListLinkComponent(props) {
       >
         <FontAwesomeIcon icon={faPlus} /> Add link
       </button>
-
       <div className="my-5 d-flex flex-column justify-content-center">
         {links.length === 0 ? (
           <div>No Link Preview</div>
