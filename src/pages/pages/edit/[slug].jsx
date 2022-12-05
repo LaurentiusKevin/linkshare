@@ -3,10 +3,9 @@ import CreatePage from "../../../Components/LinkPages/CreatePage";
 import AddLinkComponents from "../../../Components/LinkPages/AddLink";
 import ListLinkComponent from "../../../Components/LinkPages/ListLink";
 import PublishPageComponent from "../../../Components/LinkPages/PublishPage";
-import { storePage } from "../../../Config/FirebaseFirestore";
+import { storePage, getPage } from "../../../Config/FirebaseFirestore";
 import { getCurrentUser } from "../../../Config/FirebaseAuthentication";
 import { useRouter } from "next/router";
-import { getPage } from "../../../Config/FirebaseFirestore";
 
 export default function EditPage(props) {
   const router = useRouter();
@@ -83,6 +82,12 @@ export default function EditPage(props) {
     });
   }, [router]);
 
+  props = {
+    ...props,
+    createPageSubmit,
+    pageData,
+  }
+
   return (
     <div className="row justify-content-center px-3">
       <div className="col-md-6 col-lg-4">
@@ -121,7 +126,7 @@ export default function EditPage(props) {
         </div>
 
         {activePage === "step-1" && (
-          <CreatePage pageData={pageData} onSubmit={createPageSubmit} />
+          <CreatePage {...props} />
         )}
 
         {activePage === "step-2-list" && (

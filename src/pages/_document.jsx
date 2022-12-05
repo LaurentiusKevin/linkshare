@@ -43,11 +43,9 @@ export default function DefaultDocument(props) {
             <Link href="/" className="header-title">
               {props?.pageInfo?.title ?? "Starter"}
             </Link>
-            {/* button back */}
             <a href="/dashboard" className="header-icon header-icon-1">
               <FontAwesomeIcon icon={faChevronLeft} />
-            </a> 
-            {/* button back */}
+            </a>
             <a
               href="#"
               data-menu="menu-main"

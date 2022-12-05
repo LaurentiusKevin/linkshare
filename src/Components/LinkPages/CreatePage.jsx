@@ -62,12 +62,14 @@ export default function CreatePage(props) {
       setValue("url", pageData.url);
       setValue("name", pageData.name);
       setValue("description", pageData.description);
+      setValue("logoImage", pageData.logoImage);
+      setValue("backgroundImage", pageData.backgroundImage);
       setImageFile({
         logoImage: pageData.logoImage,
         backgroundImage: pageData.backgroundImage,
       });
     }
-  }, []);
+  }, [pageData]);
 
   return (
     <>
