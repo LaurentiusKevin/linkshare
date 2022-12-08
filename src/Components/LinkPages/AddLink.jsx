@@ -58,7 +58,7 @@ export default function AddLinkComponents(props) {
     if (editedLinkKey !== null) {
       reset(links[editedLinkKey]);
     }
-  }, [editedLinkKey]);
+  }, [editedLinkKey, links, reset]);
 
   return (
     <>
