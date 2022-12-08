@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import CreatePage from "../../Components/LinkPages/CreatePage";
 import { useState } from "react";
-import { faBackspace, faBackward, faBackwardStep, faHandBackFist, faPlus, faRobot, faRotateBack, faStepBackward } from "@fortawesome/free-solid-svg-icons";
+import { faBackspace, faBackward, faBackwardStep, faCaretLeft, faHandBackFist, faPlus, faRobot, faRotateBack, faStepBackward } from "@fortawesome/free-solid-svg-icons";
 import LinkCardComponent from "./LinkCard";
 // import useState from "../../pages/add";
 
@@ -12,9 +12,9 @@ export default function ListLinkComponent(props) {
     <>
     <a
         type="button"
-        className="text-blue-custom h4 fw-bold"
+        className="h4 fw-bolder text-primary-custom"
         onClick={() => setActivePage("step-1")}
-      ><FontAwesomeIcon icon={faBackward} /> back
+      ><FontAwesomeIcon icon={faCaretLeft} /> back
       </a>
       <div className="h6 fw-bolder text-primary-custom">
         Start adding your link
