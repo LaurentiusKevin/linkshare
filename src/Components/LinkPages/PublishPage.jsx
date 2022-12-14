@@ -15,7 +15,7 @@ export default function PublishPageComponent(props) {
   return (
     <>
       <button
-        className="btn text-primary-custom fw-bold"
+        className="h6 fw-bolder text-primary-custom"
         onClick={() => setActivePage("step-2-list")}
       >
         <FontAwesomeIcon icon={faCaretLeft} /> back

@@ -82,19 +82,19 @@ export default function PublishPage(props) {
           />
         </div>
         <div className="text-center mb-5">
-          <div className="h3 text-primary-custom lh-2 fw-bolder">
+          <div className="h7 fw-bolder text-primary-custom">
             Published
             <br /> Your page is online, share it
             <br /> to let the world knows
           </div>
         </div>
-        <label className="font-18 fw-bolder text-primary-custom lh-2">
+        <label className="h7 fw-bolder text-primary-custom">
           Share your page
         </label>
         <div className="input-group mb-3">
           <input
             type="text"
-            className="form-control bg-highlight-custom text-white fs-5"
+            className="form-control bg-highlight-custom text-white fs-7"
             value={domainName}
             readOnly
           />
@@ -125,7 +125,7 @@ export default function PublishPage(props) {
             <FontAwesomeIcon
               className="text-primary-custom"
               icon={faFacebook}
-              size="2x"
+              size="2%"
             />
           </Link>
           <Link
@@ -136,7 +136,7 @@ export default function PublishPage(props) {
             <FontAwesomeIcon
               className="text-primary-custom"
               icon={faWhatsapp}
-              size="2x"
+              size="2%"
             />
           </Link>
           <Link
@@ -149,7 +149,7 @@ export default function PublishPage(props) {
             <FontAwesomeIcon
               className="text-primary-custom"
               icon={faTwitter}
-              size="2x"
+              size="2%"
             />
           </Link>
           <Link
@@ -162,21 +162,21 @@ export default function PublishPage(props) {
             <FontAwesomeIcon
               className="text-primary-custom"
               icon={faLine}
-              size="2x"
+              size="2%"
             />
           </Link>
           <button className="btn">
             <FontAwesomeIcon
               className="text-secondary"
               icon={faInstagram}
-              size="2x"
+              size="2%"
             />
           </button>
           <button className="btn">
             <FontAwesomeIcon
               className="text-secondary"
               icon={faTiktok}
-              size="2x"
+              size="2%"
             />
           </button>
         </div>

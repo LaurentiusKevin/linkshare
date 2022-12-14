@@ -91,7 +91,7 @@ export default function EditPage(props) {
   return (
     <div className="row justify-content-center px-3">
       <div className="col-md-6 col-lg-4">
-        <div className="h6 fw-bolder text-primary-custom">Sign Up</div>
+        <div className="h6 fw-bolder text-primary-custom">Edit Page</div>
         <div className="d-flex mb-4">
           <div
             className="btn-group w-100"
