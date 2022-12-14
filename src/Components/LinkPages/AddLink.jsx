@@ -58,14 +58,14 @@ export default function AddLinkComponents(props) {
     if (editedLinkKey !== null) {
       reset(links[editedLinkKey]);
     }
-  }, []);
+  }, [editedLinkKey, links, reset]);
 
   return (
     <>
       <div className="h6 fw-bolder text-primary-custom">
         Add your link detail
       </div>
-      
+
       <span className="text-primary-custom">Add link to your pages easily</span>
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="my-3">
