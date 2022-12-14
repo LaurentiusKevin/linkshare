@@ -12,7 +12,7 @@ export default function ListLinkComponent(props) {
     <>
     <a
         type="button"
-        className="h4 fw-bolder text-primary-custom"
+        className="h6 fw-bolder text-primary-custom"
         onClick={() => setActivePage("step-1")}
       ><FontAwesomeIcon icon={faCaretLeft} /> back
       </a>

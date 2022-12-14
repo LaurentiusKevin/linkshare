@@ -41,7 +41,10 @@ export default function DefaultDocument(props) {
         <div id="page">
           <div className="header header-fixed header-logo-center">
             <Link href="/" className="header-title">
-              {props?.pageInfo?.title ?? "Starter"}
+              <img 
+              src="https://solutech.id/wp-content/uploads/2018/04/Logo_512x512.png" width={40} height={40}>
+              </img>
+              {/* {props?.pageInfo?.title ?? "Starter"} */}
             </Link>
             <Link href="/dashboard" className="header-icon header-icon-1">
               <FontAwesomeIcon icon={faChevronLeft} />

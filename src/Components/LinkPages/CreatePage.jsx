@@ -73,7 +73,7 @@ export default function CreatePage(props) {
 
   return (
     <>
-      <div className="h6 fw-bolder text-primary-custom">
+      <div className="h7 fw-bolder text-primary-custom">
         Input your page URL
       </div>
       <span className="text-primary-custom">
