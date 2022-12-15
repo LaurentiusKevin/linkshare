@@ -100,7 +100,7 @@ export default function AddLinkComponents(props) {
           </label>
           <div className="d-flex gap-4 px-3 align-middle">
             <FontAwesomeIcon icon={getValues().linkIcon} size="3x" />
-            <button type="button" className="btn bg-gray-dark" onClick={toggle}>
+            <button type="button" className="btn bg-blue-light" onClick={toggle}>
               Choose
             </button>
           </div>
