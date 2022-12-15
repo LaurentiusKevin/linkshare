@@ -28,7 +28,7 @@ export default function SettingsPage(props) {
               className="img-preview img-fluid mb-2 col-sm-5" 
               />
                 <div className="mt-3 mb-3 fw-bolder text-primary-custom h6 text-center">{props.user.email}</div>
-                <div className="h6 fw-bold text-center">{pageInfo.domain}/</div>
+                {/* <div className="h6 fw-bold text-center">{pageInfo.domain}/</div> */}
               </div>
             </div>
           </div>
