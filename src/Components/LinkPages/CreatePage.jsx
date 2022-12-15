@@ -123,8 +123,9 @@ export default function CreatePage(props) {
           </label>
           <textarea
             {...register("description")}
+            type="textarea"
             className="form-control"
-          ></textarea>
+          />
           {errors.description && (
             <div className="text-danger">{errors.description.message}</div>
           )}

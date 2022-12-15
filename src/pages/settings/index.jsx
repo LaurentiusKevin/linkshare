@@ -20,13 +20,15 @@ export default function SettingsPage(props) {
         <div className="h6 fw-bolder text-primary-custom mb-4">Settings</div>
         <div className="card card-style">
           <div className="content">
-            <div
-              className="d-flex align-items-end"
-              style={{ minHeight: "30vh" }}
-            >
+            <div className="d-flex align-items-end text-center" style={{ minHeight: "30vh" }}>
               <div>
-                <div className="h3 fw-bold">{props.user.email}</div>
-                <div className="h5 fw-bold">{pageInfo.domain}/</div>
+              <img 
+              src="https://www.nicepng.com/png/full/933-9332131_profile-picture-default-png.png" 
+              alt="" 
+              className="img-preview img-fluid mb-2 col-sm-5" 
+              />
+                <div className="mt-3 mb-3 fw-bolder text-primary-custom h6 text-center">{props.user.email}</div>
+                <div className="h6 fw-bold text-center">{pageInfo.domain}/</div>
               </div>
             </div>
           </div>
@@ -43,7 +45,7 @@ export default function SettingsPage(props) {
                     className="text-white"
                   />
                 </div>
-                <div className="h5 fw-bold text-dark align-self-center">
+                <div className="h7 fw-bold text-dark align-self-center">
                   User Profile
                 </div>
               </div>
@@ -60,7 +62,7 @@ export default function SettingsPage(props) {
                     className="text-white"
                   />
                 </div>
-                <div className="h5 fw-bold text-dark align-self-center">
+                <div className="h7 fw-bold text-dark align-self-center">
                   Change Password
                 </div>
               </div>
@@ -77,7 +79,7 @@ export default function SettingsPage(props) {
                     className="text-white"
                   />
                 </div>
-                <div className="h5 fw-bold text-dark align-self-center">
+                <div className="h7 fw-bold text-dark align-self-center">
                   Log out
                 </div>
               </div>
