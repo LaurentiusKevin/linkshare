@@ -96,8 +96,8 @@ export default function AddPage(props) {
             <button
               type="button"
               className={
-                `btn btn-secondary rounded-0 ` +
-                (activePage === "step-1" ? "btn-primary btn-lg" : "btn-primary active")
+                `btn btn-primary rounded-0 ` +
+                (activePage === "step-1" ? "btn-primary" : "btn-secondary")
               }
               onClick={() => setActivePage("step-1")}
             >
@@ -107,10 +107,10 @@ export default function AddPage(props) {
             <button
               type="button"
               className={
-                `btn btn-secondary rounded-0 ` +
+                `btn btn-primary rounded-0 ` +
                 (["step-2-list", "step-2-add"].includes(activePage)
-                  ? "btn-primary btn-lg"
-                  : "btn-primary active")
+                  ? "btn-primary"
+                  : "btn-secondary")
               }
               onClick={() => setActivePage("step-2-list")}
             >
