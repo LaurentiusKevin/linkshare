@@ -49,7 +49,7 @@ export default function SettingsPage(props) {
                   User Profile
                 </div>
               </div>
-              <FontAwesomeIcon icon={faCaretRight} size="2x" />
+              <FontAwesomeIcon className="mt-3" icon={faCaretRight} size="2x" />
             </div>
           </Link>
           <Link href="/settings/change-password">
@@ -66,7 +66,7 @@ export default function SettingsPage(props) {
                   Change Password
                 </div>
               </div>
-              <FontAwesomeIcon icon={faCaretRight} size="2x" />
+              <FontAwesomeIcon className="mt-3" icon={faCaretRight} size="2x" />
             </div>
           </Link>
           <Link href="/auth/sign-out">
@@ -83,7 +83,7 @@ export default function SettingsPage(props) {
                   Log out
                 </div>
               </div>
-              <FontAwesomeIcon icon={faCaretRight} size="2x" />
+              <FontAwesomeIcon className="mt-3" icon={faCaretRight} size="2x" />
             </div>
           </Link>
         </div>
