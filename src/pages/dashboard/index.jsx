@@ -29,9 +29,9 @@ export default function DashboardPage(props) {
     <div className="row justify-content-center px-3">
       <div className="col-md-6 col-lg-4">
         <div className="d-flex justify-content-between mb-4">
-          <div className="h3 text-primary-custom fw-bold">Dashboard</div>
+          <div className="h6 text-primary-custom fw-bold">Dashboard</div>
           <Link href="/pages/add" className="btn btn-primary">
-            <FontAwesomeIcon icon={faPlus} className="mr-1" /> New page
+            <FontAwesomeIcon icon={faPlus} className="mr-1" /><span className="h6 text-light"> New page</span>
           </Link>
         </div>
         <div className="row">
