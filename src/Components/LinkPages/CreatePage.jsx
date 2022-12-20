@@ -93,7 +93,7 @@ export default function CreatePage(props) {
             <input
               {...register("url")}
               type="text"
-              className="form-control"
+              className="form-control fs-6"
               onKeyUp={(e) => {
                 if (e.target.value.includes(" ")) {
                   e.target.value = e.target.value.replaceAll(" ", "_");
@@ -112,7 +112,7 @@ export default function CreatePage(props) {
           <label className="form-label mb-0 text-primary-custom fw-bold">
             Pages Name <span className="text-danger">*</span>
           </label>
-          <input {...register("name")} type="text" className="form-control" />
+          <input {...register("name")} type="text" className="form-control fs-6" />
           {errors.name && (
             <div className="text-danger">{errors.name.message}</div>
           )}
@@ -123,8 +123,8 @@ export default function CreatePage(props) {
           </label>
           <textarea
             {...register("description")}
-            type="textarea"
-            className="form-control"
+            type="text"
+            className="form-control fs-6"
           />
           {errors.description && (
             <div className="text-danger">{errors.description.message}</div>
