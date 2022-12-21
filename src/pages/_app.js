@@ -8,6 +8,7 @@ import { useRouter } from "next/router";
 import { QueryClient, QueryClientProvider } from "react-query";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
+import BottomNavbar from "../Components/Navbar/BottomNavbar";
 
 import {
   faBurger,
@@ -18,6 +19,14 @@ import {
   faPhone,
   fas,
   faShop,
+  faCamera,
+  faChevronLeft,
+  faCog,
+  faFile,
+  faHomeAlt,
+  faLayerGroup,
+  faPlus,
+  faUser,
 } from "@fortawesome/free-solid-svg-icons";
 import {
   fab,
@@ -64,6 +73,13 @@ const animationVariants = {
 };
 
 function MyApp({ Component, pageProps }) {
+  const router = useRouter();
+  const listUrlDisable = [
+    '/',
+    '/auth/sign-up',
+    '/auth/sign-in'
+  ];
+  console.log('router :', listUrlDisable.includes(router.pathname), router.pathname );
   const { asPath, back } = useRouter();
   const [pageInfo, setPageInfo] = useState({
     title: "Solutech PWA Demo NextJs",
@@ -128,6 +144,33 @@ function MyApp({ Component, pageProps }) {
             initial="hidden"
             animate="show"
           >
+          {
+            !listUrlDisable.includes(router.pathname) &&
+            <div id="footer-bar" className="footer-bar-6">
+              <BottomNavbar
+                href="/dashboard"
+                title="Dashboard "
+                icon={faHomeAlt}
+                urlPath={pageProps.asPath}
+              />
+              <BottomNavbar
+                href="/pages/add"
+                title="Create Page"
+                className="circle-nav"
+                iconColor="white"
+                icon={faPlus}
+                urlPath={pageProps.asPath}
+                circleNav={true}
+              />
+              <BottomNavbar
+                href="/settings"
+                title="Settings"
+                icon={faCog}
+                urlPath={pageProps.asPath}
+              />
+            </div>
+
+          }
             <Component {...pageProps} />
           </motion.div>
         </AnimatePresence>

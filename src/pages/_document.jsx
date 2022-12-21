@@ -14,8 +14,9 @@ import Script from "next/script";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Link from "next/link";
-
+import { useRouter } from 'next/router';
 export default function DefaultDocument(props) {
+
   return (
     <Html lang="en">
       <Head>
@@ -41,8 +42,8 @@ export default function DefaultDocument(props) {
         <div id="page">
           <div className="header header-fixed header-logo-center">
             <Link href="/" className="header-title">
-              <img 
-              src="https://solutech.id/wp-content/uploads/2018/04/Logo_512x512.png" width={40} height={40}>
+              <img
+                src="https://solutech.id/wp-content/uploads/2018/04/Logo_512x512.png" width={40} height={40}>
               </img>
               {/* {props?.pageInfo?.title ?? "Starter"} */}
             </Link>
@@ -68,30 +69,6 @@ export default function DefaultDocument(props) {
             >
               <i className="fas fa-moon"></i>
             </a>
-          </div>
-
-          <div id="footer-bar" className="footer-bar-6">
-            <BottomNavbar
-              href="/dashboard"
-              title="Dashboard "
-              icon={faHomeAlt}
-              urlPath={props.asPath}
-            />
-            <BottomNavbar
-              href="/pages/add"
-              title="Create Page"
-              className="circle-nav"
-              iconColor="white"
-              icon={faPlus}
-              urlPath={props.asPath}
-              circleNav={true}
-            />
-            <BottomNavbar
-              href="/settings"
-              title="Settings"
-              icon={faCog}
-              urlPath={props.asPath}
-            />
           </div>
 
           <div className="page-content header-clear-medium">
