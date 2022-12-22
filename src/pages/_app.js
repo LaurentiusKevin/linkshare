@@ -74,12 +74,14 @@ const animationVariants = {
 
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
-  const listUrlDisable = [
-    '/',
-    '/auth/sign-up',
-    '/auth/sign-in'
+  const listUrl = [
+    '/pages/edit',
+    '/settings',
+    '/pages/add',
+    '/dashboard',
+    '/pages/edit/'
+
   ];
-  console.log('router :', listUrlDisable.includes(router.pathname), router.pathname );
   const { asPath, back } = useRouter();
   const [pageInfo, setPageInfo] = useState({
     title: "Solutech PWA Demo NextJs",
@@ -145,7 +147,7 @@ function MyApp({ Component, pageProps }) {
             animate="show"
           >
           {
-            !listUrlDisable.includes(router.pathname) &&
+            (listUrl.includes(router.pathname) || router.pathname.includes('/pages/edit/')) &&
             <div id="footer-bar" className="footer-bar-6">
               <BottomNavbar
                 href="/dashboard"
