@@ -16,13 +16,14 @@ export default function PagesDetail(props) {
       setBackgroundImage({
         background: `url(${pageData?.backgroundImage})`,
         minHeight: "100vh",
+        backgroundSize: "cover"
       });
     });
   }, [router]);
 
   return (
     <div className="row justify-content-center">
-      <div className="col-md-6 col-lg-4 p-5 h-100" style={backgroundImage}>
+      <div className="col-md-6 col-lg-4 p-5 h-100 background-size-custom" style={backgroundImage}>
         <div className="content">
           <div className="d-flex justify-content-center">
             <Image
