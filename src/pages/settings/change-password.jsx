@@ -73,8 +73,8 @@ export default function ChangePasswordPage(props) {
         <Link href="/settings" className="h6 fw-bolder text-primary-custom">
           <FontAwesomeIcon icon={faCaretLeft} /> Back
         </Link>
-        <div className="h4 fw-bolder text-primary-custom my-4">
-          Edit Profile
+        <div className="h6 fw-bolder text-primary-custom my-4">
+          Change Password
         </div>
         <div className="card card-style">
           <div className="content">
