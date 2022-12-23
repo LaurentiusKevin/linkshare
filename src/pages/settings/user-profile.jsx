@@ -55,6 +55,7 @@ export default function UserProfilePage(props) {
   //       console.log("store profile failed: ", e);
   //     });
   // };
+
   const onSubmit = (data) => {
     storeProfile(data)
       .then((response) => {
@@ -96,7 +97,7 @@ export default function UserProfilePage(props) {
         <Link href="/settings" className="h6 fw-bolder text-primary-custom">
           <FontAwesomeIcon icon={faCaretLeft} /> Back
         </Link>
-        <div className="h4 fw-bolder text-primary-custom my-4">
+        <div className="h7 fw-bolder text-primary-custom my-4">
           Edit Profile
         </div>
         <div className="card card-style">

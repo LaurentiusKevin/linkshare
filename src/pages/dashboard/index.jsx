@@ -39,43 +39,45 @@ export default function DashboardPage(props) {
             <div key={`list-page-${key}`} className="col-sm-6 col-lg-6">
               <Link href={`/pages/edit/${item.url}`}>
                 <div
-                  className="card"
+                  className="mb-2 card card-style"
                   style={{
                     background: `url(${item.backgroundImage})`,
+                    height: 400,
+                    backgroundSize: 400,
                   }}
                 >
-                  <div className="card-body">
-                    <div className="d-flex justify-content-center mt-3">
-                      <Image
-                        src={item.logoImage}
-                        alt="Logo Image"
-                        width={50}
-                        height={50}
-                      />
-                    </div>
-                    <div className="mt-3 mb-3 fw-bolder text-primary-custom h6 text-center">
-                      {item.name}
-                    </div>
-                    <div className="mb-3 fw-bold text-primary-custom text-center">
-                      {item.description}
-                    </div>
-                    {item.link.map((item, key) => (
-                      <LinkCardComponent
-                        key={key}
-                        keyData={key}
-                        label={item.linkLabel}
-                        icon={item.linkIcon}
-                        linkIcon={item.linkIcon}
-                      />
-                    ))}
+                <div className="card-body">
+                  <div className="d-flex justify-content-center mt-3">
+                    <Image
+                      src={item.logoImage}
+                      alt="Logo Image"
+                      width={50}
+                      height={50}
+                    />
                   </div>
+                  <div className="mt-2 mb-2 fw-bolder text-primary-custom h6 text-center">
+                    {item.name}
+                  </div>
+                  <div className="mb-2 fw-bold text-primary-custom text-center">
+                    {item.description}
+                  </div>
+                  {item.link.map((item, key) => (
+                    <LinkCardComponent
+                      key={key}
+                      keyData={key}
+                      label={item.linkLabel}
+                      icon={item.linkIcon}
+                      linkIcon={item.linkIcon}
+                    />
+                  ))}
                 </div>
-              </Link>
             </div>
-          ))}
-        </div>
+              </Link>
       </div>
+          ))}
     </div>
+      </div >
+    </div >
   );
 }
 
