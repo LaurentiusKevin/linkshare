@@ -116,9 +116,8 @@ export default function PublishPage(props) {
 
         <div className="d-flex justify-content-center gap-3 mb-3">
           <Link
-            href={`https://www.facebook.com/sharer/sharer.php?u=${encodeURI(
-              domainName
-            )}`}
+            href={`https://www.facebook.com/sharer?u=${encodeURI(domainName)}`}
+            // href={`https://www.facebook.com/sharer?u=linkshare-omega.vercel.app`}
             className="btn"
             target="_blank"
           >
@@ -165,20 +164,25 @@ export default function PublishPage(props) {
               size="2%"
             />
           </Link>
-          <button className="btn">
+          {/* <Link href={`https://www.instagram.com/direct/new?url=${encodeURI(
+            domainName
+          )}`}
+            target="_blank"
+            className="btn"
+          >
             <FontAwesomeIcon
               className="text-secondary"
               icon={faInstagram}
               size="2%"
             />
-          </button>
+          </Link>
           <button className="btn">
             <FontAwesomeIcon
               className="text-secondary"
               icon={faTiktok}
               size="2%"
             />
-          </button>
+          </button> */}
         </div>
         <button
           className="btn btn-primary btn-full w-100 mb-3"
