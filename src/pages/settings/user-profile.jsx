@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import { useEffect, useState } from "react";
 import { getProfile, storeProfile } from "../../Config/FirebaseFirestore";
+import { useRouter } from "next/router";
 
 const formSchema = yup.object({
   uid: yup.string().required("UID is Required"),
@@ -24,6 +25,8 @@ const defaultProfile = {
 
 export default function UserProfilePage(props) {
   const [profile, setProfile] = useState(defaultProfile);
+  const { MySwal } = props;
+  const router = useRouter();
 
   const {
     register,
@@ -35,13 +38,38 @@ export default function UserProfilePage(props) {
     resolver: yupResolver(formSchema),
   });
 
+  // const onSubmit = (data) => {
+  //   storeProfile(data)
+  //     .then((response) => {
+  //       console.log(response);
+  //     })
+  //     .then((response) => {
+  //       MySwal.fire({
+  //         title: "User Profile",
+  //         icon: "success",
+  //       }).then(async () => {
+  //         await router.push("/settings");
+  //       });
+  //     })
+  //     .catch((e) => {
+  //       console.log("store profile failed: ", e);
+  //     });
+  // };
   const onSubmit = (data) => {
     storeProfile(data)
       .then((response) => {
-        console.log(response);
+        MySwal.fire({
+          title: "User Profile",
+          icon: "success",
+        }).then(async () => {
+          await router.push("/settings");
+        });
       })
       .catch((e) => {
-        console.log("store profile failed: ", e);
+        MySwal.fire({
+          title: FirebaseResponseCode[e.code],
+          icon: "warning",
+        });
       });
   };
 
@@ -123,7 +151,7 @@ export async function getServerSideProps(context) {
   if (user === null) {
     return {
       redirect: {
-        destination: "/auth/sign-in",
+        destination: "auth/sign-in",
       },
     };
   }
