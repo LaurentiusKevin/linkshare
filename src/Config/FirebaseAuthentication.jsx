@@ -5,6 +5,7 @@ import {
   signOut,
   updatePassword,
   getAuth,
+  sendPasswordResetEmail,
 } from "firebase/auth";
 import nookies from "nookies";
 
@@ -40,4 +41,8 @@ export const changePassword = ({ email, oldPassword, newPassword }) => {
       return updatePassword(getAuth().currentUser, newPassword);
     }
   );
+};
+
+export const resetPassword = ({ email }) => {
+  return sendPasswordResetEmail(firebaseAuthentication, email);
 };
