@@ -23,7 +23,8 @@ export default function PagesDetail(props) {
 
   return (
     <div className="row justify-content-center">
-      <div className="col-md-6 col-lg-4 p-5 h-100 background-size-custom" style={backgroundImage}>
+      <div className="col-md-6 col-lg-4 p-5 h-100 background-size-custom card card-style" style={backgroundImage} height={300}
+                    backgroundSize={300}>
         <div className="content">
           <div className="d-flex justify-content-center">
             <Image
