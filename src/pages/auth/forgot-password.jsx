@@ -34,7 +34,7 @@ export default function LoginPage(props) {
 
   const onSubmit = (data) => {
     setLoginErrorMessage("");
-    resetPassword(data.email)
+    resetPassword({ email: data.email })
       .then(async (r) => {
         props.MySwal.fire({
           icon: "success",
