@@ -70,8 +70,8 @@ export default function ChangePasswordPage(props) {
   return (
     <div className="row justify-content-center px-3">
       <div className="col-md-6 col-lg-4">
-        <Link href="/settings" className="h6 fw-bolder text-primary-custom">
-          <FontAwesomeIcon icon={faCaretLeft} /> Back
+        <Link href="/settings" className="h7 fw-bolder text-primary-custom">
+          <FontAwesomeIcon icon={faCaretLeft} /> back
         </Link>
         <div className="h6 fw-bolder text-primary-custom my-4">
           Change Password
