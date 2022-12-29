@@ -22,7 +22,8 @@ export default function PublishPageComponent(props) {
       </button>
       <div className="row justify-content-center my-3">
         <div className="col-10">
-          <div className="card card-style" style={backgroundImage}>
+          <div className="card card-style" style={backgroundImage} height={400}
+                    backgroundSize={400}>
             <div className="content">
               <div className="d-flex justify-content-center">
                 <Image

@@ -7,18 +7,16 @@ import { useRouter } from "next/router";
 import {
   authSignIn,
   getCurrentUser,
+  resetPassword,
 } from "../../Config/FirebaseAuthentication";
 import { setCookie } from "nookies";
+import { FirebaseResponseCode } from "../../Config/FirebaseAuthConstants";
 
 const formSchema = yup.object({
   email: yup
     .string()
     .required("Email is Required")
     .email("Please enter a valid email address (Ex: johndoe@domain.com)"),
-  password: yup
-    .string()
-    .required("Password is Required")
-    .min(6, "Minimum Password is 6 Characters"),
 });
 
 export default function LoginPage(props) {
@@ -36,34 +34,17 @@ export default function LoginPage(props) {
 
   const onSubmit = (data) => {
     setLoginErrorMessage("");
-    authSignIn(data)
+    resetPassword({ email: data.email })
       .then(async (r) => {
-        setCookie(null, "user", JSON.stringify(r.user), { path: "/" });
-        await router.push("/dashboard");
+        props.MySwal.fire({
+          icon: "success",
+          title: "Reset password has been send to email",
+        });
       })
       .catch((e) => {
-        let title;
-        switch (e.code) {
-          case "auth/wrong-password":
-            title = (
-              <div className="h4">
-                Email or Password incorrect. <br /> Please try again later.
-              </div>
-            );
-            break;
-
-          default:
-            title = (
-              <div className="h4">
-                There is something wrong with the server, or the error code is
-                not mapped yet!
-              </div>
-            );
-            break;
-        }
         props.MySwal.fire({
           title: "Something wrong",
-          text: e.code,
+          text: FirebaseResponseCode[e.code],
         }).then((r) => {
           console.log("Sign In warning", e.code);
         });
@@ -98,7 +79,7 @@ export default function LoginPage(props) {
           {/* <div className="mb-2">
             <p className="text-danger">Please enter a valid email address (ex:johndoe@domain.com).</p>
           </div> */}
-          
+
           <button className="btn w-100 btn-primary mt-2">Confirm</button>
         </form>
         <div className="text-center mt-2 fw-bold">
