@@ -14,7 +14,7 @@ const formSchema = yup.object({
   email: yup.string().email().required("Email is Required"),
   // username: yup.string().min(3, "Must be exactly 3 char"),
   // link: yup.string().required("Link is Required"),
-  // phoneNumber: yup.string().min(10, 'Must be exactly 10 digits').max(13, 'Must be exactly 13 digits'),
+  phoneNumber: yup.string().max(13, 'Must be exactly 13 digits'),
   // address: yup.string().min(3, 'Must be exactly 3 char').max(255, 'Must be exactly 255 char'),
 });
 // class GetUsersQuery{
@@ -144,9 +144,9 @@ export default function UserProfilePage(props) {
                   className="form-control"
                 />
 
-                {/* {errors.phoneNumber && (
+                {errors.phoneNumber && (
                   <div className="text-danger">{errors.phoneNumber.message}</div>
-                )} */}
+                )}
 
               </div>
               <div className="mb-3">
