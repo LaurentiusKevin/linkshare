@@ -12,15 +12,27 @@ import { useRouter } from "next/router";
 const formSchema = yup.object({
   uid: yup.string().required("UID is Required"),
   email: yup.string().email().required("Email is Required"),
-  username: yup.string().required("Username is Required"),
+  username: yup.string().min(3, "Must be exactly 3 char"),
   link: yup.string().required("Link is Required"),
+  phoneNumber: yup.string().min(10, 'Must be exactly 10 digits').max(13, 'Must be exactly 13 digits'),
+  address: yup.string().min(3, 'Must be exactly 3 char').max(255, 'Must be exactly 255 char'),
 });
+// class GetUsersQuery{
+//   @IsInt()
+//   @Type(() => Number)
+//   phoneNumber: number;
+
+//   @IsString()
+//   username: string;
+// }
 
 const defaultProfile = {
   uid: "",
   email: "",
   username: "",
   link: "",
+  phoneNumber: "",
+  address: "",
 };
 
 export default function UserProfilePage(props) {
@@ -87,6 +99,8 @@ export default function UserProfilePage(props) {
       if (data !== undefined) {
         setValue("username", data.username);
         setValue("link", data.link);
+        setValue("phoneNumber", data.phoneNumber);
+        setValue("address", data.address);
       }
     });
   }, []);
@@ -133,6 +147,32 @@ export default function UserProfilePage(props) {
                 />
                 {errors.link && (
                   <div className="text-danger">{errors.link.message}</div>
+                )}
+              </div>
+              <div className="mb-3">
+                <label className="form-label mb-0 text-primary-custom fw-bold">
+                  Phone Number <span className="text-danger">*</span>
+                </label>
+                <input
+                  {...register("phoneNumber")}
+                  type="number"
+                  className="form-control"
+                />
+                {errors.phoneNumber && (
+                  <div className="text-danger">{errors.phoneNumber.message}</div>
+                )}
+              </div>
+              <div className="mb-3">
+                <label className="form-label mb-0 text-primary-custom fw-bold">
+                  address <span className="text-danger">*</span>
+                </label>
+                <input
+                  {...register("address")}
+                  type="text"
+                  className="form-control"
+                />
+                {errors.address && (
+                  <div className="text-danger">{errors.phoneNumber.message}</div>
                 )}
               </div>
               <button type="submit" className="btn w-100 btn-primary">

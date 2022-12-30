@@ -44,5 +44,9 @@ export const changePassword = ({ email, oldPassword, newPassword }) => {
 };
 
 export const resetPassword = ({ email }) => {
-  return sendPasswordResetEmail(firebaseAuthentication, email);
+  const actionCode = {
+    url: window.location.origin,
+    handleCodeInApp: true,
+  };
+  return sendPasswordResetEmail(firebaseAuthentication, email, actionCode);
 };

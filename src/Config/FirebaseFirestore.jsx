@@ -56,5 +56,7 @@ export const storeProfile = async (profile) => {
     username: profile.username,
     email: profile.email,
     link: profile.link,
+    phoneNumber: profile.phoneNumber,
+    address: profile.address,
   });
 };
