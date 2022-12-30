@@ -75,12 +75,11 @@ const animationVariants = {
 function MyApp({ Component, pageProps }) {
   const router = useRouter();
   const listUrl = [
-    '/pages/edit',
-    '/settings',
-    '/pages/add',
-    '/dashboard',
-    '/pages/edit/'
-
+    "/pages/edit",
+    "/settings",
+    "/pages/add",
+    "/dashboard",
+    "/pages/edit/",
   ];
   const { asPath, back } = useRouter();
   const [pageInfo, setPageInfo] = useState({
@@ -115,6 +114,8 @@ function MyApp({ Component, pageProps }) {
     "fab fa-youtube",
     "fa-solid fa-shop",
     "fa-solid fa-envelope",
+    "fa-solid fa-globe",
+    "fa-solid fa-messages",
   ];
 
   pageProps = {
@@ -146,33 +147,32 @@ function MyApp({ Component, pageProps }) {
             initial="hidden"
             animate="show"
           >
-          {
-            (listUrl.includes(router.pathname) || router.pathname.includes('/pages/edit/')) &&
-            <div id="footer-bar" className="footer-bar-6">
-              <BottomNavbar
-                href="/dashboard"
-                title="Dashboard "
-                icon={faHomeAlt}
-                urlPath={pageProps.asPath}
-              />
-              <BottomNavbar
-                href="/pages/add"
-                title="Create Page"
-                className="circle-nav"
-                iconColor="white"
-                icon={faPlus}
-                urlPath={pageProps.asPath}
-                circleNav={true}
-              />
-              <BottomNavbar
-                href="/settings"
-                title="Settings"
-                icon={faCog}
-                urlPath={pageProps.asPath}
-              />
-            </div>
-
-          }
+            {(listUrl.includes(router.pathname) ||
+              router.pathname.includes("/pages/edit/")) && (
+              <div id="footer-bar" className="footer-bar-6">
+                <BottomNavbar
+                  href="/dashboard"
+                  title="Dashboard "
+                  icon={faHomeAlt}
+                  urlPath={pageProps.asPath}
+                />
+                <BottomNavbar
+                  href="/pages/add"
+                  title="Create Page"
+                  className="circle-nav"
+                  iconColor="white"
+                  icon={faPlus}
+                  urlPath={pageProps.asPath}
+                  circleNav={true}
+                />
+                <BottomNavbar
+                  href="/settings"
+                  title="Settings"
+                  icon={faCog}
+                  urlPath={pageProps.asPath}
+                />
+              </div>
+            )}
             <Component {...pageProps} />
           </motion.div>
         </AnimatePresence>
