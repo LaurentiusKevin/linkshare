@@ -40,7 +40,7 @@ export default function DefaultDocument(props) {
         {/*  <div className="spinner-border color-highlight" role="status"></div>*/}
         {/*</div>*/}
         <div id="page">
-          <div className="header header-fixed header-logo-center">
+          <div className="col-lg-4 col-md-6 m-auto header header-fixed header-logo-center">
             <Link href="/" className="header-title">
               <img
                 src="https://solutech.id/wp-content/uploads/2018/04/Logo_512x512.png" width={40} height={40}>
