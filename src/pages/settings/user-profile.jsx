@@ -12,10 +12,10 @@ import { useRouter } from "next/router";
 const formSchema = yup.object({
   uid: yup.string().required("UID is Required"),
   email: yup.string().email().required("Email is Required"),
-  username: yup.string().min(3, "Must be exactly 3 char"),
-  link: yup.string().required("Link is Required"),
-  phoneNumber: yup.string().min(10, 'Must be exactly 10 digits').max(13, 'Must be exactly 13 digits'),
-  address: yup.string().min(3, 'Must be exactly 3 char').max(255, 'Must be exactly 255 char'),
+  // username: yup.string().min(3, "Must be exactly 3 char"),
+  // link: yup.string().required("Link is Required"),
+  // phoneNumber: yup.string().min(10, 'Must be exactly 10 digits').max(13, 'Must be exactly 13 digits'),
+  // address: yup.string().min(3, 'Must be exactly 3 char').max(255, 'Must be exactly 255 char'),
 });
 // class GetUsersQuery{
 //   @IsInt()
@@ -30,7 +30,6 @@ const defaultProfile = {
   uid: "",
   email: "",
   username: "",
-  link: "",
   phoneNumber: "",
   address: "",
 };
@@ -98,7 +97,6 @@ export default function UserProfilePage(props) {
     getProfile(props.user.uid).then((data) => {
       if (data !== undefined) {
         setValue("username", data.username);
-        setValue("link", data.link);
         setValue("phoneNumber", data.phoneNumber);
         setValue("address", data.address);
       }
@@ -125,55 +123,44 @@ export default function UserProfilePage(props) {
               </div>
               <div className="mb-3">
                 <label className="form-label mb-0 text-primary-custom fw-bold">
-                  Username <span className="text-danger">*</span>
+                  Username
                 </label>
                 <input
                   {...register("username")}
                   type="text"
                   className="form-control"
                 />
-                {errors.username && (
+                {/* {errors.username && (
                   <div className="text-danger">{errors.username.message}</div>
-                )}
+                )} */}
               </div>
               <div className="mb-3">
                 <label className="form-label mb-0 text-primary-custom fw-bold">
-                  Link <span className="text-danger">*</span>
-                </label>
-                <input
-                  {...register("link")}
-                  type="text"
-                  className="form-control"
-                />
-                {errors.link && (
-                  <div className="text-danger">{errors.link.message}</div>
-                )}
-              </div>
-              <div className="mb-3">
-                <label className="form-label mb-0 text-primary-custom fw-bold">
-                  Phone Number <span className="text-danger">*</span>
+                  Phone Number
                 </label>
                 <input
                   {...register("phoneNumber")}
                   type="number"
                   className="form-control"
                 />
-                {errors.phoneNumber && (
+
+                {/* {errors.phoneNumber && (
                   <div className="text-danger">{errors.phoneNumber.message}</div>
-                )}
+                )} */}
+
               </div>
               <div className="mb-3">
                 <label className="form-label mb-0 text-primary-custom fw-bold">
-                  address <span className="text-danger">*</span>
+                  address
                 </label>
                 <input
                   {...register("address")}
                   type="text"
                   className="form-control"
                 />
-                {errors.address && (
-                  <div className="text-danger">{errors.phoneNumber.message}</div>
-                )}
+                {/* {errors.address && (
+                  <div className="text-danger">{errors.address.message}</div>
+                )} */}
               </div>
               <button type="submit" className="btn w-100 btn-primary">
                 Update
