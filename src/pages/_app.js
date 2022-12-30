@@ -148,10 +148,11 @@ function MyApp({ Component, pageProps }) {
           >
           {
             (listUrl.includes(router.pathname) || router.pathname.includes('/pages/edit/')) &&
-            <div id="footer-bar" className="footer-bar-6">
+            <div id="footer-bar" class="col-lg-4 col-md-6 m-auto footer-bar-6">
               <BottomNavbar
                 href="/dashboard"
                 title="Dashboard "
+                active-class="active-nav"
                 icon={faHomeAlt}
                 urlPath={pageProps.asPath}
               />
@@ -159,6 +160,7 @@ function MyApp({ Component, pageProps }) {
                 href="/pages/add"
                 title="Create Page"
                 className="circle-nav"
+                active-class="active-nav"
                 iconColor="white"
                 icon={faPlus}
                 urlPath={pageProps.asPath}
@@ -167,6 +169,7 @@ function MyApp({ Component, pageProps }) {
               <BottomNavbar
                 href="/settings"
                 title="Settings"
+                active-class="active-nav"
                 icon={faCog}
                 urlPath={pageProps.asPath}
               />
