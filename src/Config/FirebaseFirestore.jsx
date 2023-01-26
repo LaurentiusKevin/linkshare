@@ -18,6 +18,8 @@ export const storePage = async (uid, page) => {
     link: page.link,
     logoImage: page.logoImage,
     backgroundImage: page.backgroundImage,
+    totalView: page.totalView ? page.totalView + 1 : 1,
+    status: page.status ? page.status : "active",
   });
 };
 

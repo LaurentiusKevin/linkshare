@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import Image from "next/image";
 import LinkCardComponent from "../../Components/LinkPages/LinkCard";
 import { faRobot } from "@fortawesome/free-solid-svg-icons";
-import { getPage } from "../../Config/FirebaseFirestore";
+import { getPage, storePage } from "../../Config/FirebaseFirestore";
 import { useEffect, useState } from "react";
 
 export default function PagesDetail(props) {
@@ -11,19 +11,28 @@ export default function PagesDetail(props) {
   const [backgroundImage, setBackgroundImage] = useState({});
 
   useEffect(() => {
-    getPage(router.query.slug).then((pageData) => {
-      setPageInfo(pageData);
-      setBackgroundImage({
-        background: `url(${pageData?.backgroundImage})`,
-        minHeight: "100vh",
-        backgroundSize: "cover"
+    if (router.isReady) {
+      getPage(router.query.slug).then((pageData) => {
+        console.log(pageData, router.query.slug);
+        setPageInfo(pageData);
+        setBackgroundImage({
+          background: `url(${pageData?.backgroundImage})`,
+          minHeight: "100vh",
+          backgroundSize: "cover",
+        });
+        storePage(pageData.uid, pageData).then((pageResponse) => {
+          console.log("view added");
+        });
       });
-    });
-  }, [router]);
+    }
+  }, [router.isReady]);
 
   return (
     <div className="row justify-content-center">
-      <div className="col-md-6 col-lg-4 p-5 h-100 background-size-custom card card-style" style={backgroundImage}>
+      <div
+        className="col-md-6 col-lg-4 p-5 h-100 background-size-custom card card-style"
+        style={backgroundImage}
+      >
         <div className="content">
           <div className="d-flex justify-content-center">
             <Image
