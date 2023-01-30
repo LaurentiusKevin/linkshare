@@ -6,9 +6,11 @@ import { useState } from "react";
 import { useRouter } from "next/router";
 import {
   authSignIn,
+  authSignOut,
   getCurrentUser,
 } from "../../Config/FirebaseAuthentication";
 import { setCookie } from "nookies";
+import { getProfile } from "../../Config/FirebaseFirestore";
 
 const formSchema = yup.object({
   email: yup
@@ -38,8 +40,20 @@ export default function LoginPage(props) {
     setLoginErrorMessage("");
     authSignIn(data)
       .then(async (r) => {
-        setCookie(null, "user", JSON.stringify(r.user), { path: "/" });
-        await router.push("/dashboard");
+        getProfile(r.user.uid).then((profile) => {
+          if (profile.status === "active") {
+            setCookie(null, "user", JSON.stringify(r.user), { path: "/" });
+            router.push("/dashboard");
+          } else {
+            authSignOut();
+            props.MySwal.fire({
+              title: "Something wrong",
+              text: "Your account has been disabled",
+            }).then((r) => {
+              console.log("Sign In warning", "account disabled");
+            });
+          }
+        });
       })
       .catch((e) => {
         let title;
