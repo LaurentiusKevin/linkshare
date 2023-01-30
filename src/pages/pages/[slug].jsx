@@ -1,4 +1,3 @@
-import { useRouter } from "next/router";
 import Image from "next/image";
 import LinkCardComponent from "../../Components/LinkPages/LinkCard";
 import { faRobot } from "@fortawesome/free-solid-svg-icons";
@@ -6,26 +5,17 @@ import { getPage, storePage } from "../../Config/FirebaseFirestore";
 import { useEffect, useState } from "react";
 
 export default function PagesDetail(props) {
-  const router = useRouter();
   const [pageInfo, setPageInfo] = useState({});
   const [backgroundImage, setBackgroundImage] = useState({});
 
   useEffect(() => {
-    if (router.isReady) {
-      getPage(router.query.slug).then((pageData) => {
-        console.log(pageData, router.query.slug);
-        setPageInfo(pageData);
-        setBackgroundImage({
-          background: `url(${pageData?.backgroundImage})`,
-          minHeight: "100vh",
-          backgroundSize: "cover",
-        });
-        storePage(pageData.uid, pageData).then((pageResponse) => {
-          console.log("view added");
-        });
-      });
-    }
-  }, [router.isReady]);
+    setPageInfo(props.pageData);
+    setBackgroundImage({
+      background: `url(${props.pageData?.backgroundImage})`,
+      minHeight: "100vh",
+      backgroundSize: "cover",
+    });
+  }, [props.pageData]);
 
   return (
     <div className="row justify-content-center">
@@ -35,12 +25,14 @@ export default function PagesDetail(props) {
       >
         <div className="content">
           <div className="d-flex justify-content-center">
-            <Image
-              src={pageInfo?.logoImage}
-              alt="Logo Image"
-              width={100}
-              height={100}
-            />
+            {pageInfo?.logoImage && (
+              <Image
+                src={pageInfo?.logoImage}
+                alt="Logo Image"
+                width={100}
+                height={100}
+              />
+            )}
           </div>
           <div className="mt-3 mb-3 fw-bolder text-primary-custom h1 text-center">
             {pageInfo?.name}
@@ -64,3 +56,20 @@ export default function PagesDetail(props) {
     </div>
   );
 }
+
+export const getServerSideProps = async (ctx) => {
+  const slug = ctx.params?.slug;
+  const pageData = await getPage(slug);
+
+  if (!pageData) {
+    return {
+      notFound: true,
+    };
+  }
+
+  return {
+    props: {
+      pageData,
+    },
+  };
+};
