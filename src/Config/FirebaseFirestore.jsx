@@ -57,7 +57,8 @@ export const storeProfile = async (profile) => {
   return setDoc(doc(firebaseFirestore, "profile", profile.uid), {
     username: profile.username,
     email: profile.email,
-    phoneNumber: profile.phoneNumber,
-    address: profile.address,
+    phoneNumber: profile.phoneNumber ?? "",
+    address: profile.address ?? "",
+    status: profile.status ?? "active",
   });
 };
