@@ -61,7 +61,7 @@ export const getServerSideProps = async (ctx) => {
   const slug = ctx.params?.slug;
   const pageData = await getPage(slug);
 
-  if (!pageData) {
+  if (!pageData || pageData.status !== "active") {
     return {
       notFound: true,
     };
