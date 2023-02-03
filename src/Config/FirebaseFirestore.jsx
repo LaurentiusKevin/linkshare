@@ -26,7 +26,14 @@ export const storePage = async (uid, page) => {
 export const getPage = async (page) => {
   try {
     const pageRef = doc(firebaseFirestore, "pages", page);
-    return (await getDoc(pageRef)).data();
+    const data = (await getDoc(pageRef)).data();
+
+    await storePage(data.uid, {
+      ...data,
+      totalView: data.totalView ? 1 : data.totalView + 1,
+    });
+
+    return data;
   } catch (e) {
     console.log("failed to get data: ", e);
   }
