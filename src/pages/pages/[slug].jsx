@@ -1,7 +1,7 @@
 import Image from "next/image";
 import LinkCardComponent from "../../Components/LinkPages/LinkCard";
 import { faRobot } from "@fortawesome/free-solid-svg-icons";
-import { getPage, storePage } from "../../Config/FirebaseFirestore";
+import { getPage } from "../../Config/FirebaseFirestore";
 import { useEffect, useState } from "react";
 
 export default function PagesDetail(props) {

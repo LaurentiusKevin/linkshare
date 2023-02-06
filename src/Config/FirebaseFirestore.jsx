@@ -18,7 +18,7 @@ export const storePage = async (uid, page) => {
     link: page.link,
     logoImage: page.logoImage,
     backgroundImage: page.backgroundImage,
-    totalView: page.totalView ? page.totalView + 1 : 1,
+    totalView: (page.totalView === undefined) ? 1 : page.totalView + 1,
     status: page.status ? page.status : "active",
   });
 };
@@ -28,16 +28,20 @@ export const getPage = async (page) => {
     const pageRef = doc(firebaseFirestore, "pages", page);
     const data = (await getDoc(pageRef)).data();
 
-    await storePage(data.uid, {
-      ...data,
-      totalView: data.totalView ? 1 : data.totalView + 1,
-    });
+    await addPageViewTotal(data)
 
     return data;
   } catch (e) {
     console.log("failed to get data: ", e);
   }
 };
+
+export const addPageViewTotal = async (data) => {
+  await storePage(data.uid, {
+    ...data,
+    totalView: data.totalView,
+  });
+}
 
 export const getPagesByUid = async (uid) => {
   try {
