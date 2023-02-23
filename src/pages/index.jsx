@@ -49,6 +49,7 @@ export default function IndexPage() {
               Create more links with one - pages link
             </span>
           </div>
+          <Link href="/auth/sign-up" className="fw-bold">
           <Image
             className="img-fluid rounded-5"
             src="/images/framework/home-illustration.png"
@@ -57,6 +58,7 @@ export default function IndexPage() {
             height={500}
             relative
           />
+          </Link>
         </section>
         {/*<section className="bg-gradient-2 p-5">*/}
         {/*  <p className="h3 text-secondary mb-3">Business</p>*/}
