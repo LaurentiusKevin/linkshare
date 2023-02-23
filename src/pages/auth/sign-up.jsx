@@ -10,6 +10,8 @@ import {
 } from "../../Config/FirebaseAuthentication";
 import { useRouter } from "next/router";
 import { setCookie } from "nookies";
+import { storeProfile } from "../../Config/FirebaseFirestore";
+import { FirebaseResponseCode } from "../../Config/FirebaseAuthConstants";
 
 const formSchema = yup.object({
   email: yup
@@ -41,19 +43,32 @@ export default function SignUpPage(props) {
   const onSubmit = (data) => {
     authRegister(data)
       .then(async (r) => {
-        authSignIn(data)
-          .then(async (loginData) => {
-            setCookie(null, "user", JSON.stringify(loginData.user), {
-              path: "/",
-            });
-            await router.push("/pages/add");
+        storeProfile({
+          uid: r.user.uid,
+          username: data.email,
+          email: data.email,
+        })
+          .then((profileResponse) => {
+            authSignIn(data)
+              .then(async (loginData) => {
+                setCookie(null, "user", JSON.stringify(loginData.user), {
+                  path: "/",
+                });
+                await router.push("/pages/add");
+              })
+              .catch((loginError) => {
+                console.log("Sign In warning", loginError.code);
+                props.MySwal.fire({
+                  title: "Something wrong",
+                  text: loginError.code,
+                });
+              });
           })
-          .catch((loginError) => {
+          .catch((e) => {
+            console.log("Store profile error", e.code);
             props.MySwal.fire({
               title: "Something wrong",
-              text: loginError.code,
-            }).then((r) => {
-              console.log("Sign In warning", loginError.code);
+              text: FirebaseResponseCode[e.code],
             });
           });
       })

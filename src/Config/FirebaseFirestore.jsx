@@ -18,17 +18,30 @@ export const storePage = async (uid, page) => {
     link: page.link,
     logoImage: page.logoImage,
     backgroundImage: page.backgroundImage,
+    totalView: (page.totalView === undefined) ? 1 : page.totalView + 1,
+    status: page.status ? page.status : "active",
   });
 };
 
 export const getPage = async (page) => {
   try {
     const pageRef = doc(firebaseFirestore, "pages", page);
-    return (await getDoc(pageRef)).data();
+    const data = (await getDoc(pageRef)).data();
+
+    await addPageViewTotal(data)
+
+    return data;
   } catch (e) {
     console.log("failed to get data: ", e);
   }
 };
+
+export const addPageViewTotal = async (data) => {
+  await storePage(data.uid, {
+    ...data,
+    totalView: data.totalView,
+  });
+}
 
 export const getPagesByUid = async (uid) => {
   try {
@@ -55,7 +68,8 @@ export const storeProfile = async (profile) => {
   return setDoc(doc(firebaseFirestore, "profile", profile.uid), {
     username: profile.username,
     email: profile.email,
-    phoneNumber: profile.phoneNumber,
-    address: profile.address,
+    phoneNumber: profile.phoneNumber ?? "",
+    address: profile.address ?? "",
+    status: profile.status ?? "active",
   });
 };
