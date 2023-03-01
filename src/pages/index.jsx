@@ -44,7 +44,7 @@ export default function IndexPage() {
             height={500}
             relative
           />
-          <div className="h1 fw-bold text-dark mb-5">
+          <div className="h4 fw-bold text-dark mb-2">
             <span className="text-primary-custom">
               Create more links with one - pages link
             </span>
