@@ -2,6 +2,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHandPointRight } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import Image from "next/image";
+import { usePinchZoom } from "react-use";
+import { transform } from "framer-motion";
 
 const defaultBrancBusinessSection = [
   {
@@ -28,7 +30,7 @@ export default function IndexPage() {
             backgroundColor: "#b5e0db",
           }}
         >
-          <div className="d-flex gap-2 justify-content-end mb-5">
+          <div className="d-flex gap-2 justify-content-end">
             <Link href="/auth/sign-up" className="btn btn-highlight fw-bold">
               SIGN UP
             </Link>
@@ -36,15 +38,16 @@ export default function IndexPage() {
               LOGIN
             </Link>
           </div>
+          <div className="scale">
           <Image
             className="img-fluid rounded-5"
             src="/images/framework/home-image.png"
-            alt="phone-preview"
+            style={transform}
             width={500}
-            height={500}
-            relative
+            height={50}
           />
-          <div className="h4 fw-bold text-dark mb-2">
+          </div>
+          <div className="h4 fw-bold text-dark">
             <span className="text-primary-custom">
               Create more links with one - pages link
             </span>
@@ -54,8 +57,8 @@ export default function IndexPage() {
             className="img-fluid rounded-5"
             src="/images/framework/home-illustration.png"
             alt="phone-preview"
-            width={500}
-            height={500}
+            width={400}
+            height={400}
             relative
           />
           </Link>
