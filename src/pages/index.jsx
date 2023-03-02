@@ -40,11 +40,11 @@ export default function IndexPage() {
           </div>
           <div className="scale">
           <Image
-            className="img-fluid rounded-5"
+            className="img-fluid rounded-5 mt-5"
             src="/images/framework/home-image.png"
             style={transform}
             width={500}
-            height={50}
+            height={500}
           />
           </div>
           <div className="h4 fw-bold text-dark">
