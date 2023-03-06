@@ -10,7 +10,6 @@ export default function PagesDetail(props) {
     pageData,
   } = props
   const [pageLink, setPageLink] = useState([]);
-  // const [backgroundImage, setBackgroundImage] = useState({});
 
   useEffect(() => {
     setPageLink(pageData.link);
@@ -27,11 +26,9 @@ export default function PagesDetail(props) {
             fill
             style={{objectFit: "cover"}}
           />
-          <div className="p-4" style={{
-            position: 'absolute', top: 0, bottom: 0, left: 0, right: 0, background: 'rgba(123,176,185,0.6)'
-          }}>
+          <div className="p-4" style={style.overlay}>
             <div className="content">
-              <Card style={{backgroundColor: "transparent"}}>
+              <Card style={style.bgTransparent}>
                 <div className="d-flex justify-content-center">
                   {pageData?.logoImage && (<Image
                       src={pageData?.logoImage}
@@ -40,10 +37,10 @@ export default function PagesDetail(props) {
                       height={100}
                     />)}
                 </div>
-                <div className="mt-3 mb-3 fw-bolder text-primary-custom h1 text-center">
+                <div className="mt-3 mb-3 fw-bolder text-dark h1 text-center">
                   {pageData?.name}
                 </div>
-                <div className="mb-3 fw-bold text-primary-custom h5 text-center">
+                <div className="mb-3 fw-bold text-dark h5 text-center">
                   {pageData?.description}
                 </div>
               </Card>
@@ -79,3 +76,17 @@ export const getServerSideProps = async (ctx) => {
     },
   };
 };
+
+const style = {
+  overlay: {
+    position: 'absolute',
+    top: 0,
+    bottom: 0,
+    left: 0,
+    right: 0,
+    background: 'rgba(123,176,185,0.6)'
+  },
+  bgTransparent: {
+    backgroundColor: 'transparent'
+  }
+}
