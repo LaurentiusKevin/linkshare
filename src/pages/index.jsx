@@ -3,6 +3,8 @@ import { faArrowUp, faHandPointRight, faShare, faUpload } from "@fortawesome/fre
 import Link from "next/link";
 import Image from "next/image";
 import { faFacebook, faTiktok, faTwitter, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
+import { usePinchZoom } from "react-use";
+import { transform } from "framer-motion";
 
 const defaultBrancBusinessSection = [
   {
@@ -29,7 +31,7 @@ export default function IndexPage() {
             backgroundColor: "#b5e0db",
           }}
         >
-          <div className="d-flex gap-2 justify-content-end mb-5">
+          <div className="d-flex gap-2 justify-content-end">
             <Link href="/auth/sign-up" className="btn btn-highlight fw-bold">
               SIGN UP
             </Link>
@@ -37,17 +39,18 @@ export default function IndexPage() {
               LOGIN
             </Link>
           </div>
+          <div className="scale">
           <Image
-            className="img-fluid rounded-2"
+            className="img-fluid rounded-5 mt-5"
             src="/images/framework/home-image.png"
-            alt="phone-preview"
+            style={transform}
             width={500}
             height={500}
-            relative
           />
-          <div className="h4 fw-bold text-dark mb-2">
+          </div>
+          <div className="h4 fw-bold text-dark">
             <span className="text-primary-custom">
-            Create more links with one - pages
+              Create more links with one - pages link
             </span>
           </div>
           <Link href="/auth/sign-up" className="fw-bold">
@@ -55,8 +58,8 @@ export default function IndexPage() {
             className="img-fluid rounded-5"
             src="/images/framework/home-illustration.png"
             alt="phone-preview"
-            width={500}
-            height={500}
+            width={400}
+            height={400}
             relative
           />
           </Link>
@@ -102,17 +105,17 @@ export default function IndexPage() {
             <table>
               <tr>
                 <td width={150}>
-                <Link href="/404" className="fw-bold">
+                <Link href="#" className="fw-bold">
                   Privacy Policy
                 </Link>
                 </td>
                 <td width={150}>
-                <Link href="/404" className="fw-bold">
+                <Link href="#" className="fw-bold">
                   Term Of service
                 </Link>
                 </td>
                 <td width={150}>
-                <Link href="/404" className="fw-bold">
+                <Link href="#" className="fw-bold">
                   Contact Support
                 </Link>
                 </td>
