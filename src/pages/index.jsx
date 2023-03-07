@@ -87,7 +87,7 @@ export default function IndexPage() {
               />
               </Link>
         </div>
-        <div className="bg-white text-center">
+        <div className="bg-gray text-center">
             <table>
               <tr>
                 <td width={150}>
