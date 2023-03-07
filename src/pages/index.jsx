@@ -65,41 +65,27 @@ export default function IndexPage() {
           </Link>
         </section>
         <div className="bg-white text-center">
-          <Link href="https://facebook.com" className="fw-bold">
+          <Link href="https://facebook.com" className="fw-bold m-2">
         <FontAwesomeIcon
-            className="color-teal-dark mb-5 mt-5 ml-1"
+            className="color-teal-dark mb-5 mt-5"
             icon={faFacebook}
-            size="3x"
+            size="2x"
           />
           </Link>
-          <Link href="https://twitter.com" className="fw-bold">
+          <Link href="https://twitter.com" className="fw-bold m-2">
           <FontAwesomeIcon
-              className="color-teal-dark mb-5 mt-5 ml-1"
+              className="color-teal-dark mb-5 mt-5"
               icon={faTwitter}
-              size="3x"
+              size="2x"
             />
             </Link>
-          <Link href="https://web.whatsapp.com" className="fw-bold">
+          <Link href="https://web.whatsapp.com" className="fw-bold m-2">
             <FontAwesomeIcon
-                className="color-teal-dark mb-5 mt-5 ml-1"
+                className="color-teal-dark mb-5 mt-5"
                 icon={faWhatsapp}
-                size="3x"
+                size="2x"
               />
               </Link>
-          <Link href="https://linkshare.jak.asia" className="fw-bold">
-              <FontAwesomeIcon
-                  className="color-teal-dark mb-5 mt-5 ml-1"
-                  icon={faShare}
-                  size="3x"
-                />
-                </Link>
-          <Link href="https://upload.com" className="fw-bold">
-              <FontAwesomeIcon
-                  className="color-teal-dark mb-5 mt-5 ml-1"
-                  icon={faArrowUp}
-                  size="3x"
-                />
-                </Link>
         </div>
         <div className="bg-white text-center">
             <table>
