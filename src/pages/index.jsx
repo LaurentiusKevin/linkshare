@@ -1,7 +1,8 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHandPointRight } from "@fortawesome/free-solid-svg-icons";
+import { faArrowUp, faHandPointRight, faShare, faUpload } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import Image from "next/image";
+import { faFacebook, faTiktok, faTwitter, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 
 const defaultBrancBusinessSection = [
   {
@@ -37,7 +38,7 @@ export default function IndexPage() {
             </Link>
           </div>
           <Image
-            className="img-fluid rounded-5"
+            className="img-fluid rounded-2"
             src="/images/framework/home-image.png"
             alt="phone-preview"
             width={500}
@@ -46,7 +47,7 @@ export default function IndexPage() {
           />
           <div className="h4 fw-bold text-dark mb-2">
             <span className="text-primary-custom">
-              Create more links with one - pages link
+            Create more links with one - pages
             </span>
           </div>
           <Link href="/auth/sign-up" className="fw-bold">
@@ -60,6 +61,64 @@ export default function IndexPage() {
           />
           </Link>
         </section>
+        <div className="bg-white text-center">
+          <Link href="https://facebook.com" className="fw-bold">
+        <FontAwesomeIcon
+            className="color-teal-dark mb-5 mt-5 ml-1"
+            icon={faFacebook}
+            size="3x"
+          />
+          </Link>
+          <Link href="https://twitter.com" className="fw-bold">
+          <FontAwesomeIcon
+              className="color-teal-dark mb-5 mt-5 ml-1"
+              icon={faTwitter}
+              size="3x"
+            />
+            </Link>
+          <Link href="https://web.whatsapp.com" className="fw-bold">
+            <FontAwesomeIcon
+                className="color-teal-dark mb-5 mt-5 ml-1"
+                icon={faWhatsapp}
+                size="3x"
+              />
+              </Link>
+          <Link href="https://linkshare.jak.asia" className="fw-bold">
+              <FontAwesomeIcon
+                  className="color-teal-dark mb-5 mt-5 ml-1"
+                  icon={faShare}
+                  size="3x"
+                />
+                </Link>
+          <Link href="https://upload.com" className="fw-bold">
+              <FontAwesomeIcon
+                  className="color-teal-dark mb-5 mt-5 ml-1"
+                  icon={faArrowUp}
+                  size="3x"
+                />
+                </Link>
+        </div>
+        <div className="bg-white text-center">
+            <table>
+              <tr>
+                <td width={150}>
+                <Link href="/404" className="fw-bold">
+                  Privacy Policy
+                </Link>
+                </td>
+                <td width={150}>
+                <Link href="/404" className="fw-bold">
+                  Term Of service
+                </Link>
+                </td>
+                <td width={150}>
+                <Link href="/404" className="fw-bold">
+                  Contact Support
+                </Link>
+                </td>
+              </tr>
+            </table>
+          </div>
         {/*<section className="bg-gradient-2 p-5">*/}
         {/*  <p className="h3 text-secondary mb-3">Business</p>*/}
         {/*  <p className="h1 fw-bold text-dark mb-3">*/}
