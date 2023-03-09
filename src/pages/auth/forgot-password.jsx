@@ -1,4 +1,4 @@
-import Link from "next/link";
+import Link from 'next/link'
 import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -38,8 +38,9 @@ export default function LoginPage(props) {
       .then(async (r) => {
         props.MySwal.fire({
           icon: "success",
-          title: "Reset password has been send to email",
+          title: "Reset password has been send to email",      
         });
+      router.push('sign-in')
       })
       .catch((e) => {
         props.MySwal.fire({
@@ -99,7 +100,7 @@ export async function getServerSideProps(context) {
   if (user !== null) {
     return {
       redirect: {
-        destination: "/auth/confirm-password",
+        destination: "/auth/sign-in",
       },
     };
   }

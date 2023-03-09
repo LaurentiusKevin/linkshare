@@ -40,16 +40,16 @@ export default function DefaultDocument(props) {
         {/*  <div className="spinner-border color-highlight" role="status"></div>*/}
         {/*</div>*/}
         <div id="page">
-          <div className="col-lg-4 col-md-6 m-auto header header-fixed header-logo-center">
+          <div className="col-lg-5 col-md-6 m-auto header header-fixed header-logo-center">
             <Link href="/" className="header-title">
               <img
                 src="https://solutech.id/wp-content/uploads/2018/04/Logo_512x512.png" width={40} height={40}>
               </img>
               {/* {props?.pageInfo?.title ?? "Starter"} */}
             </Link>
-            <Link href="/dashboard" className="header-icon header-icon-1">
+            {/* <Link href="/dashboard" className="header-icon header-icon-1">
               <FontAwesomeIcon icon={faChevronLeft} />
-            </Link>
+            </Link> */}
             <a
               href="#"
               data-menu="menu-main"

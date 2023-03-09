@@ -158,7 +158,8 @@ export async function getServerSideProps(context) {
   if (user !== null) {
     return {
       redirect: {
-        destination: "/pages/add",
+        destination: "/",
+        // destination: "/pages/add",
       },
     };
   }

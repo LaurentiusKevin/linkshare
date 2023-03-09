@@ -26,8 +26,8 @@ export default function DashboardPage(props) {
   }, []);
 
   return (
-    <div className="row justify-content-center px-3">
-      <div className="col-md-6 col-lg-4">
+    <div className="row justify-content-center px-1">
+      <div className="col-md-6 col-lg-5">
         <div className="d-flex justify-content-between mb-4">
           <div className="h6 text-primary-custom fw-bold">Dashboard</div>
           <Link href="/pages/add" className="btn btn-primary">
@@ -36,10 +36,10 @@ export default function DashboardPage(props) {
         </div>
         <div className="row">
           {pagesData.map((item, key) => (
-            <div key={`list-page-${key}`} className="col-sm-6 col-lg-6">
+            <div key={`list-page-${key}`} className="col-lg-6">
               <Link href={`/pages/edit/${item.url}`}>
                 <div
-                  className="mb-2 card card-style"
+                  className="mb-4 card card-style"
                   style={{
                     background: `url(${item.backgroundImage})`,
                     height: 400,
@@ -55,10 +55,10 @@ export default function DashboardPage(props) {
                       height={50}
                     />
                   </div>
-                  <div className="mt-2 mb-2 fw-bolder text-primary-custom h6 text-center">
+                  <div className="mt-2 fw-bolder text-primary-custom h6 text-center">
                     {item.name}
                   </div>
-                  <div className="mb-2 fw-bold text-primary-custom text-center">
+                  <div className="mb-4 fw-bold text-primary-custom text-center">
                     {item.description}
                   </div>
                   {item.link.map((item, key) => (
@@ -68,6 +68,7 @@ export default function DashboardPage(props) {
                       label={item.linkLabel}
                       icon={item.linkIcon}
                       linkIcon={item.linkIcon}
+                      className="p-4"
                     />
                   ))}
                 </div>

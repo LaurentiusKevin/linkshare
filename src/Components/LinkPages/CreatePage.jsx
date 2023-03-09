@@ -74,7 +74,7 @@ export default function CreatePage(props) {
   return (
     <>
       <div className="h7 fw-bolder text-primary-custom">
-        Input your page URL
+        Input your page URL <span className="text-danger">*</span>
       </div>
       <span className="text-primary-custom">
         Your page will be online with chosen username after proceeding. You can
