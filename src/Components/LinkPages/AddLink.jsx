@@ -3,14 +3,21 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useEffect, useState } from "react";
 import withReactContent from "sweetalert2-react-content";
+import { faBackspace, faBackward, faBackwardStep, faCaretLeft, faHandBackFist, faPlus, faRobot, faRotateBack, faStepBackward } from "@fortawesome/free-solid-svg-icons";
 import Swal from "sweetalert2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Modal, ModalBody, ModalHeader } from "reactstrap";
+import ListLink from "../../Components/LinkPages/ListLink";
+import LinkCardComponent from "./LinkCard";
+import { useRouter } from 'next/router';
+import Link from 'next/link';
 
 export default function AddLinkComponents(props) {
+  const router = useRouter()
   const [modal, setModal] = useState(false);
+  const [activePage, setActivePage] = useState('step-1');
   const toggle = () => setModal(!modal);
-  const { onSubmit, editedLinkKey, links, deleteLink } = props;
+  const { onSubmit, editedLinkKey, links, deleteLinke } = props;
   const MySwal = withReactContent(Swal);
 
   const formSchema = yup.object({
@@ -21,6 +28,14 @@ export default function AddLinkComponents(props) {
       .required("Link URL is Required"),
     linkIcon: yup.string(),
   });
+
+  function handleSetActivePage(page) {
+    setActivePage(page)
+  }
+
+  function handleGoBack() {
+    router.back()
+  }
 
   const {
     register,
@@ -61,7 +76,8 @@ export default function AddLinkComponents(props) {
   }, [editedLinkKey, links, reset]);
 
   return (
-    <>
+    <>    
+    <button onClick={() => handleGoBack('step-1')}><FontAwesomeIcon icon={faCaretLeft} /> back</button>
       <div className="h6 fw-bolder text-primary-custom">
         Add your link detail
       </div>

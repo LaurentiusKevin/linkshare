@@ -151,7 +151,7 @@ function MyApp({ Component, pageProps }) {
               router.pathname.includes("/pages/edit/")) && (
               <div
                 id="footer-bar"
-                class="col-lg-4 col-md-6 m-auto footer-bar-6"
+                class="col-lg-5 col-md-6 m-auto footer-bar-6"
               >
                 <BottomNavbar
                   href="/dashboard"
