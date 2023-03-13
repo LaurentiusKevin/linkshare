@@ -35,21 +35,15 @@ export default function IndexPage() {
     // Lakukan logout, dan set isLoggedIn ke false jika logout berhasil
     setIsLoggedIn(false)
   }
-  
+
   return (
     <div className="row justify-content-center">
       <div className="col-md-6 col-lg-4">
-        <section
-          className="text-center px-5 pb-5 pt-1"
-          style={{
-            backgroundColor: "#b5e0db",
-          }}
-        >
-          <div>
-            {isLoggedIn ? (
-              <button onClick={() => handleLogout()}>Logout</button>
-            ) : (
-              <div className="d-flex gap-2 justify-content-end">
+        <div className="mb-3">
+          {isLoggedIn ? (
+            <button onClick={() => handleLogout()}>Logout</button>
+          ) : (
+            <div className="d-flex gap-2 justify-content-end">
               <Link href="/auth/sign-up" className="btn btn-highlight fw-bold">
                 SIGN UP
               </Link>
@@ -57,10 +51,15 @@ export default function IndexPage() {
                 LOGIN
               </Link>
             </div>
-            )}
-            {isLoggedIn && <p>Selamat datang, pengguna!</p>}
-          </div>
-
+          )}
+          {isLoggedIn && <p>Selamat datang, pengguna!</p>}
+        </div>
+        <section
+          className="text-center px-5 pb-5 pt-1"
+          style={{
+            backgroundColor: "#b5e0db",
+          }}
+        >
           <div className="scale">
             <Image
               className="img-fluid rounded-5 mt-5"

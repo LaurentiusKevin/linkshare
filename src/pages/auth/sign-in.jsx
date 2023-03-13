@@ -132,7 +132,7 @@ export default function LoginPage(props) {
             className="text-primary-custom mb-3"
             onClick={() => setShowPassword(!showPassword)}
           >
-            Show password
+            {showPassword ? 'Hide password' : 'Show password'}
           </button>
           <div className="d-flex justify-content-end">
             <Link href="/auth/forgot-password" className="text-primary-custom">
