@@ -72,15 +72,19 @@ const animationVariants = {
   },
 };
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, props}) {
+
   const router = useRouter();
-  const listUrl = [
+
+  let listUrl = [
     "/pages/edit",
     "/settings",
     "/pages/add",
     "/dashboard",
     "/pages/edit/",
+    "/"
   ];
+
   const { asPath, back } = useRouter();
   const [pageInfo, setPageInfo] = useState({
     title: "Solutech PWA Demo NextJs",
@@ -118,8 +122,8 @@ function MyApp({ Component, pageProps }) {
     "fa-solid fa-message",
   ];
 
-  pageProps = {
-    ...pageProps,
+  props = {
+    ...props,
     pageInfo,
     setPageInfo,
     router: {
@@ -130,6 +134,18 @@ function MyApp({ Component, pageProps }) {
     iconList,
     Toast,
   };
+    pageProps = {
+      ...pageProps,
+      pageInfo,
+      setPageInfo,
+      router: {
+        asPath,
+        back,
+      },
+      MySwal,
+      iconList,
+      Toast,
+    };
 
   useEffect(() => {
     setPageInfo({
@@ -142,49 +158,62 @@ function MyApp({ Component, pageProps }) {
     <React.Fragment>
       <QueryClientProvider client={queryClient}>
         <AnimatePresence>
-          <motion.div
-            variants={animationVariants}
-            initial="hidden"
-            animate="show"
-          >
-            {(listUrl.includes(router.pathname) ||
-              router.pathname.includes("/pages/edit/")) && (
-              <div
-                id="footer-bar"
-                class="col-lg-5 col-md-6 m-auto footer-bar-6"
-              >
-                <BottomNavbar
-                  href="/dashboard"
-                  title="Dashboard "
-                  active-class="active-nav"
-                  icon={faHomeAlt}
-                  urlPath={pageProps.asPath}
-                />
-                <BottomNavbar
-                  href="/pages/add"
-                  title="Create Page"
-                  className="circle-nav"
-                  active-class="active-nav"
-                  iconColor="white"
-                  icon={faPlus}
-                  urlPath={pageProps.asPath}
-                  circleNav={true}
-                />
-                <BottomNavbar
-                  href="/settings"
-                  title="Settings"
-                  active-class="active-nav"
-                  icon={faCog}
-                  urlPath={pageProps.asPath}
-                />
-              </div>
-            )}
-            <Component {...pageProps} />
-          </motion.div>
+            
+  {pageProps?.isLoggedIn ? ( 
+      
+        <motion.div
+              variants={animationVariants}
+              initial="hidden"
+              animate="show"
+            >
+              {(listUrl.includes(router.pathname) ||
+                router.pathname.includes("/pages/edit/")) && (  
+                  <div
+                    id="footer-bar"
+                    class="col-lg-5 col-md-6 m-auto footer-bar-6"
+                  >
+                    <BottomNavbar
+                      href="/dashboard"
+                      title="Dashboard "
+                      active-class="active-nav"
+                      icon={faHomeAlt}
+                      urlPath={pageProps.asPath}
+                    />
+                    <BottomNavbar
+                      href="/pages/add"
+                      title="Create Page"
+                      className="circle-nav"
+                      active-class="active-nav"
+                      iconColor="white"
+                      icon={faPlus}
+                      urlPath={pageProps.asPath}
+                      circleNav={true}
+                    />
+                    <BottomNavbar
+                      href="/settings"
+                      title="Settings"
+                      active-class="active-nav"
+                      icon={faCog}
+                      urlPath={pageProps.asPath}
+                    />
+                  </div>
+                  
+                )}
+              <Component {...pageProps} />
+            </motion.div>
+    
+    ) : (
+      <Component {...pageProps} />
+    )}
         </AnimatePresence>
       </QueryClientProvider>
     </React.Fragment>
   );
 }
-
+export async function getServerSideProps(context) {
+  let user = getCurrentUser(context);  
+  return {
+    pageProps: { isLoggedIn: user !== null },
+  };
+}
 export default MyApp;
