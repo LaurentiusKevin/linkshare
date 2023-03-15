@@ -202,6 +202,12 @@ export default function CreatePage(props) {
                 onFileChange(e, "logoImage");
               }}
             />
+            <Button
+              className="ms-2"
+              color="danger"
+              type="button"
+              onClick={() => clearImage('logoImage')}
+            >Clear</Button>
           </div>
           {errors.logoImage && (
             <div className="text-danger">{errors.logoImage.message}</div>
@@ -231,6 +237,12 @@ export default function CreatePage(props) {
                 onFileChange(e, "backgroundImage");
               }}
             />
+            <Button
+              className="ms-2"
+              color="danger"
+              type="button"
+              onClick={() => clearImage('backgroundImage')}
+            >Clear</Button>
           </div>
           <span className="text-primary-custom">
             Suggested image size width: 720, height: 1280

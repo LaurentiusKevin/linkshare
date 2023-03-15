@@ -33,9 +33,9 @@ export default function AddLinkComponents(props) {
     setActivePage(page)
   }
 
-  function handleGoBack() {
-    router.back()
-  }
+  const handleBackButtonClick = () => {
+    router.back();
+  };
 
   const {
     register,
@@ -77,7 +77,9 @@ export default function AddLinkComponents(props) {
 
   return (
     <>    
-    <button onClick={() => handleGoBack('step-1')}><FontAwesomeIcon icon={faCaretLeft} /> back</button>
+    <button onClick={handleBackButtonClick}>
+      Back
+    </button>
       <div className="h6 fw-bolder text-primary-custom">
         Add your link detail
       </div>
