@@ -216,6 +216,9 @@ export default function CreatePage(props) {
               onClick={() => clearImage('backgroundImage')}
             >Clear</Button>
           </div>
+          <span className="text-primary-custom">
+            Suggested image size width: 720, height: 1280
+          </span>
           {errors.backgroundImage && (
             <div className="text-danger">{errors.backgroundImage.message}</div>
           )}
