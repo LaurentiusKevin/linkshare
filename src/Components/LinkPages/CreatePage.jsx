@@ -16,7 +16,7 @@ const formSchema = yup.object({
 });
 
 export default function CreatePage(props) {
-  const { pageData, createPageSubmit, MySwal } = props;
+  const { pageData, createPageSubmit, MySwal, editProcess = false } = props;
   const [linkPrefix, setLinkPrefix] = useState("");
   const [imageFile, setImageFile] = useState({
     logoImage: undefined,
@@ -109,6 +109,9 @@ export default function CreatePage(props) {
         backgroundImage: pageData.backgroundImage,
       });
     }
+    if (editProcess === true) {
+      setLinkExists(false)
+    }
   }, [pageData]);
 
   return (
@@ -134,6 +137,7 @@ export default function CreatePage(props) {
               {...register("url")}
               type="text"
               className="form-control fs-6"
+              disabled={editProcess}
               onKeyUp={(e) => {
                 if (e.target.value.includes(" ")) {
                   e.target.value = e.target.value.replaceAll(" ", "_");

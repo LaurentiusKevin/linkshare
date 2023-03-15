@@ -126,7 +126,7 @@ export default function EditPage(props) {
         </div>
 
         {activePage === "step-1" && (
-          <CreatePage {...props} />
+          <CreatePage {...props} editProcess={true} />
         )}
 
         {activePage === "step-2-list" && (

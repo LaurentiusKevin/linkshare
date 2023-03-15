@@ -57,7 +57,7 @@ export default function DashboardPage(props) {
                           height={100}
                         />
                       </div>
-                      <div className="mt-3 mb-3 fw-bolder text-dark h1 text-center">
+                      <div className="mt-3 mb-3 fw-bolder text-dark h5 text-center">
                         {item.name}
                       </div>
                       <div className="mb-3 fw-bold text-dark h6 text-center">
