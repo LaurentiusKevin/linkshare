@@ -39,7 +39,7 @@ export default function DashboardPage(props) {
             <div key={`list-page-${key}`} className="col-lg-6">
               <Link href={`/pages/edit/${item.url}`}>
                 <div
-                  className="p-5 h-100 background-size-custom card card-style"
+                  className="mb-4 card card-style"
                   style={{minHeight: '60vh'}}>
                   <Image
                     src={item.backgroundImage}

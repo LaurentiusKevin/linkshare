@@ -117,7 +117,11 @@ export default function AddPage(props) {
               style={{
                 backgroundColor: activePage !== "step-1" ? "#115d72" : "#88c0cf"
               }}
-              onClick={() => setActivePage("step-2-list")}
+              onClick={() => {
+                if (pageData.name !== '' && pageData.url !== '' && pageData.description !== '') {
+                  setActivePage("step-2-list")
+                }
+              }}
             >
               <div className="fw-bolder">Step 2</div>
               <div>Add Link</div>
