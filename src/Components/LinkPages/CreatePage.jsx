@@ -24,7 +24,7 @@ export default function CreatePage(props) {
   });
   const logoFileInput = useRef();
   const backgroundFileInput = useRef();
-  const [linkExists, setLinkExists] = useState(true)
+  const [linkExists, setLinkExists] = useState(undefined)
 
   const {
     register,
@@ -150,7 +150,7 @@ export default function CreatePage(props) {
           {errors.url && (
             <div className="text-danger">{errors.url.message}</div>
           )}
-          {linkExists && <span className="text-danger">Link already exists</span>}
+          {linkExists === true && <span className="text-danger">Link already exists</span>}
         </div>
         <div className="mb-3">
           <label className="form-label mb-0 text-primary-custom fw-bold">
@@ -198,12 +198,6 @@ export default function CreatePage(props) {
                 onFileChange(e, "logoImage");
               }}
             />
-            <Button
-              className="ms-2"
-              color="danger"
-              type="button"
-              onClick={() => clearImage('logoImage')}
-            >Clear</Button>
           </div>
           {errors.logoImage && (
             <div className="text-danger">{errors.logoImage.message}</div>
@@ -233,12 +227,6 @@ export default function CreatePage(props) {
                 onFileChange(e, "backgroundImage");
               }}
             />
-            <Button
-              className="ms-2"
-              color="danger"
-              type="button"
-              onClick={() => clearImage('backgroundImage')}
-            >Clear</Button>
           </div>
           <span className="text-primary-custom">
             Suggested image size width: 720, height: 1280

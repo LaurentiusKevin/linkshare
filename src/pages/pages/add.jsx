@@ -96,11 +96,10 @@ export default function AddPage(props) {
             <button
               type="button"
               className={
-                `btn btn-primary rounded-0 ` +
-                (activePage === "step-1" ? "btn-primary" : "btn-secondary")
+                `btn btn-primary rounded-0 `
               }
               style={{
-                backgroundColor: "#115d72"
+                backgroundColor: activePage === "step-1" ? "#115d72" : "#88c0cf"
               }}
               onClick={() => setActivePage("step-1")}
             >
@@ -116,7 +115,7 @@ export default function AddPage(props) {
                   : "btn-secondary")
               }
               style={{
-                backgroundColor: "#88c0cf"
+                backgroundColor: activePage !== "step-1" ? "#115d72" : "#88c0cf"
               }}
               onClick={() => setActivePage("step-2-list")}
             >
