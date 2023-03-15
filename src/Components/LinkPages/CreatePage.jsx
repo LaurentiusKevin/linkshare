@@ -4,6 +4,7 @@ import * as yup from "yup";
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { getImage, uploadImage } from "../../Config/FirebaseStorage";
+import {Button} from "reactstrap";
 
 const formSchema = yup.object({
   url: yup.string().required("Link URL is Required"),
@@ -33,28 +34,47 @@ export default function CreatePage(props) {
   });
 
   const onFileChange = (input, fileType) => {
-    MySwal.showLoading();
-    let filename = `page-image/${self.crypto.randomUUID()}.jpg`;
-    uploadImage(filename, input.target.files[0]).then((e) => {
-      getImage(filename).then((url) => {
-        MySwal.close();
-        if (fileType === "logoImage") {
-          setValue("logoImage", url);
-          setImageFile({
-            ...imageFile,
-            logoImage: url,
-          });
-        }
-        if (fileType === "backgroundImage") {
-          setValue("backgroundImage", url);
-          setImageFile({
-            ...imageFile,
-            backgroundImage: url,
-          });
-        }
+    if (input.target.files[0] !== undefined) {
+      MySwal.showLoading();
+      let filename = `page-image/${self.crypto.randomUUID()}.jpg`;
+      uploadImage(filename, input.target.files[0]).then((e) => {
+        getImage(filename).then((url) => {
+          MySwal.close();
+          if (fileType === "logoImage") {
+            setValue("logoImage", url);
+            setImageFile({
+              ...imageFile,
+              logoImage: url,
+            });
+          }
+          if (fileType === "backgroundImage") {
+            setValue("backgroundImage", url);
+            setImageFile({
+              ...imageFile,
+              backgroundImage: url,
+            });
+          }
+        });
       });
-    });
+    }
   };
+
+  const clearImage = (fileType) => {
+    if (fileType === "logoImage") {
+      setValue("logoImage", "/images/icons/20.png");
+      setImageFile({
+        ...imageFile,
+        logoImage: undefined,
+      });
+    }
+    if (fileType === "backgroundImage") {
+      setValue("backgroundImage", "/images/icons/20.png");
+      setImageFile({
+        ...imageFile,
+        backgroundImage: undefined,
+      });
+    }
+  }
 
   useEffect(() => {
     setLinkPrefix(window.location.hostname);
@@ -154,6 +174,12 @@ export default function CreatePage(props) {
                 onFileChange(e, "logoImage");
               }}
             />
+            <Button
+              className="ms-2"
+              color="danger"
+              type="button"
+              onClick={() => clearImage('logoImage')}
+            >Clear</Button>
           </div>
           {errors.logoImage && (
             <div className="text-danger">{errors.logoImage.message}</div>
@@ -183,7 +209,16 @@ export default function CreatePage(props) {
                 onFileChange(e, "backgroundImage");
               }}
             />
+            <Button
+              className="ms-2"
+              color="danger"
+              type="button"
+              onClick={() => clearImage('backgroundImage')}
+            >Clear</Button>
           </div>
+          <span className="text-primary-custom">
+            Suggested image size width: 720, height: 1280
+          </span>
           {errors.backgroundImage && (
             <div className="text-danger">{errors.backgroundImage.message}</div>
           )}

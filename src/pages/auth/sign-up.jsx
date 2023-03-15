@@ -12,6 +12,7 @@ import { useRouter } from "next/router";
 import { setCookie } from "nookies";
 import { storeProfile } from "../../Config/FirebaseFirestore";
 import { FirebaseResponseCode } from "../../Config/FirebaseAuthConstants";
+import {Spinner} from "reactstrap";
 
 const formSchema = yup.object({
   email: yup
@@ -31,6 +32,7 @@ const formSchema = yup.object({
 export default function SignUpPage(props) {
   const router = useRouter();
   const [showPassword, setShowPassword] = useState(false);
+  const [isFormLoading, setIsFormLoading] = useState(false)
 
   const {
     register,
@@ -41,6 +43,7 @@ export default function SignUpPage(props) {
   });
 
   const onSubmit = (data) => {
+    setIsFormLoading(!isFormLoading)
     authRegister(data)
       .then(async (r) => {
         storeProfile({
@@ -51,12 +54,14 @@ export default function SignUpPage(props) {
           .then((profileResponse) => {
             authSignIn(data)
               .then(async (loginData) => {
+                setIsFormLoading(false)
                 setCookie(null, "user", JSON.stringify(loginData.user), {
                   path: "/",
                 });
                 await router.push("/pages/add");
               })
               .catch((loginError) => {
+                setIsFormLoading(false)
                 console.log("Sign In warning", loginError.code);
                 props.MySwal.fire({
                   title: "Something wrong",
@@ -65,6 +70,7 @@ export default function SignUpPage(props) {
               });
           })
           .catch((e) => {
+            setIsFormLoading(false)
             console.log("Store profile error", e.code);
             props.MySwal.fire({
               title: "Something wrong",
@@ -73,6 +79,7 @@ export default function SignUpPage(props) {
           });
       })
       .catch((e) => {
+        setIsFormLoading(false)
         let message =
           e.code === "auth/email-already-in-use" ? "Email Exists" : e.code;
         props.MySwal.fire({
@@ -139,10 +146,10 @@ export default function SignUpPage(props) {
             className="text-primary-custom mb-3"
             onClick={() => setShowPassword(!showPassword)}
           >
-            Show password
+            {showPassword ? 'Hide password' : 'Show password'}
           </button>
           <button type="submit" className="btn w-100 btn-primary mt-2">
-            Sign Up
+            {isFormLoading ? <Spinner /> : 'Sign Up '}
           </button>
         </form>
         <div className="text-center mt-2 fw-bold">
