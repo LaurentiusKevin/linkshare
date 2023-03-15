@@ -35,7 +35,6 @@ export default function IndexPage(props) {
   //   // Lakukan login, dan set isLoggedIn ke true jika login berhasil
   //   setIsLoggedIn(true)
   // }
-
   // function handleLogout() {
   //   // Lakukan logout, dan set isLoggedIn ke false jika logout berhasil
   //   setIsLoggedIn(false)
