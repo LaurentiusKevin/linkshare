@@ -5,6 +5,7 @@ import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 import { getImage, uploadImage } from "../../Config/FirebaseStorage";
 import {Button} from "reactstrap";
+import {getPage} from "../../Config/FirebaseFirestore";
 
 const formSchema = yup.object({
   url: yup.string().required("Link URL is Required"),
@@ -23,6 +24,7 @@ export default function CreatePage(props) {
   });
   const logoFileInput = useRef();
   const backgroundFileInput = useRef();
+  const [linkExists, setLinkExists] = useState(true)
 
   const {
     register,
@@ -76,6 +78,24 @@ export default function CreatePage(props) {
     }
   }
 
+  const getPageByLink = (link) => {
+    getPage(link)
+      .then(response => {
+        if (response === undefined) {
+          setLinkExists(false)
+        } else {
+          setLinkExists(true)
+        }
+        console.log(response, linkExists)
+      })
+  }
+
+  const validatePage = (data) => {
+    if (linkExists === false) {
+      createPageSubmit(data)
+    }
+  }
+
   useEffect(() => {
     setLinkPrefix(window.location.hostname);
     if (pageData.url !== "") {
@@ -101,7 +121,7 @@ export default function CreatePage(props) {
         modify it later on &quot;Page Settings&quot;.
       </span>
 
-      <form onSubmit={handleSubmit(createPageSubmit)}>
+      <form onSubmit={handleSubmit(validatePage)}>
         <div className="mb-3">
           <div className="input-group">
             <span
@@ -122,11 +142,15 @@ export default function CreatePage(props) {
                   e.target.value = e.target.value.replaceAll("/", "");
                 }
               }}
+              onChange={(e) => {
+                getPageByLink(e.target.value)
+              }}
             />
           </div>
           {errors.url && (
             <div className="text-danger">{errors.url.message}</div>
           )}
+          {linkExists && <span className="text-danger">Link already exists</span>}
         </div>
         <div className="mb-3">
           <label className="form-label mb-0 text-primary-custom fw-bold">
