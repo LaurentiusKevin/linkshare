@@ -187,6 +187,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       user: user,
+      isLoggedIn : user !== null
     },
   };
 }

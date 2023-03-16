@@ -2,10 +2,15 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowUp, faHandPointRight, faShare, faUpload } from "@fortawesome/free-solid-svg-icons";
 import Link from "next/link";
 import Image from "next/image";
+import {
+  authSignIn,
+  authSignOut,
+  getCurrentUser,
+} from "../Config/FirebaseAuthentication";
 import { faFacebook, faTiktok, faTwitter, faWhatsapp } from "@fortawesome/free-brands-svg-icons";
 import { usePinchZoom, useSessionStorage } from "react-use";
 import { transform } from "framer-motion";
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
 const defaultBrancBusinessSection = [
   {
@@ -22,26 +27,33 @@ const defaultBrancBusinessSection = [
   },
 ];
 
-export default function IndexPage() {
+export default function IndexPage(props) {
 
-  const [isLoggedIn, setIsLoggedIn] = useState(false)
+  // const [isLoggedIn, setIsLoggedIn] = useState(false)
 
-  function handleLogin() {
-    // Lakukan login, dan set isLoggedIn ke true jika login berhasil
-    setIsLoggedIn(true)
-  }
+  // function handleLogin() {
+  //   // Lakukan login, dan set isLoggedIn ke true jika login berhasil
+  //   setIsLoggedIn(true)
+  // }
+  // function handleLogout() {
+  //   // Lakukan logout, dan set isLoggedIn ke false jika logout berhasil
+  //   setIsLoggedIn(false)
+  // }
 
-  function handleLogout() {
-    // Lakukan logout, dan set isLoggedIn ke false jika logout berhasil
-    setIsLoggedIn(false)
-  }
+  // useEffect(() => {
+  //     let user = getCurrentUser(context);
+    
+  //     if (user !== null) {
+  //       setIsLoggedIn(true)
+  //     }
 
+  // })
   return (
     <div className="row justify-content-center">
       <div className="col-md-6 col-lg-4">
         <div className="mb-3">
-          {isLoggedIn ? (
-            <button onClick={() => handleLogout()}>Logout</button>
+          {props.isLoggedIn ? (
+            <button onClick={() => handleLogout()}></button>
           ) : (
             <div className="d-flex gap-2 justify-content-end">
               <Link href="/auth/sign-up" className="btn btn-highlight fw-bold">
@@ -52,7 +64,7 @@ export default function IndexPage() {
               </Link>
             </div>
           )}
-          {isLoggedIn && <p>Selamat datang, pengguna!</p>}
+          {props.isLoggedIn && <p></p>}
         </div>
         <section
           className="text-center px-5 pb-5 pt-1"
@@ -159,4 +171,21 @@ export default function IndexPage() {
       </div>
     </div>
   );
+}
+
+export async function getServerSideProps(context) {
+  let user = getCurrentUser(context);
+
+  // if (user !== null) {
+  //   return {
+  //     redirect: {
+  //       destination: "/",
+  //       // destination: "/pages/add",
+  //     },
+  //   };
+  // }
+
+  return {
+    props: {isLoggedIn : user !== null},
+  };
 }
