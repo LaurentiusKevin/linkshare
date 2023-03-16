@@ -50,25 +50,38 @@ export default function DefaultDocument(props) {
             {/* <Link href="/dashboard" className="header-icon header-icon-1">
               <FontAwesomeIcon icon={faChevronLeft} />
             </Link> */}
-            <a
-              href="#"
-              data-menu="menu-main"
-              className="header-icon header-icon-4"
+            <div
+              className="header-icon header-icon-3"
+              style={{
+                width: "auto",
+              }}
             >
-              <i className="fas fa-bars"></i>
-            </a>
-            <a
-              href="#"
-              className="header-icon header-icon-3 show-on-theme-dark"
-            >
-              <i className="fas fa-sun"></i>
-            </a>
-            <a
-              href="#"
-              className="header-icon header-icon-3 show-on-theme-light"
-            >
-              <i className="fas fa-moon"></i>
-            </a>
+              <Link href="/auth/sign-up" className="btn btn-highlight fw-bold me-1">
+                SIGN UP
+              </Link>
+              <Link href="/auth/sign-in" onClick={() => handleLogin()} className="btn btn-highlight fw-bold">
+                LOGIN
+              </Link>
+            </div>
+            {/*<a*/}
+            {/*  href="#"*/}
+            {/*  data-menu="menu-main"*/}
+            {/*  className="header-icon header-icon-4"*/}
+            {/*>*/}
+            {/*  <i className="fas fa-bars"></i>*/}
+            {/*</a>*/}
+            {/*<a*/}
+            {/*  href="#"*/}
+            {/*  className="header-icon header-icon-3 show-on-theme-dark"*/}
+            {/*>*/}
+            {/*  <i className="fas fa-sun"></i>*/}
+            {/*</a>*/}
+            {/*<a*/}
+            {/*  href="#"*/}
+            {/*  className="header-icon header-icon-3 show-on-theme-light"*/}
+            {/*>*/}
+            {/*  <i className="fas fa-moon"></i>*/}
+            {/*</a>*/}
           </div>
 
           <div className="page-content header-clear-medium">
