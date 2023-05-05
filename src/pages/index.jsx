@@ -63,6 +63,21 @@ export default function IndexPage(props) {
             backgroundColor: "#b5e0db",
           }}
         >
+        <div
+          className="header-icon header-icon-3"
+          style={{
+            width: "auto",
+            float: 'right',
+            textAlign: 'right',
+          }}
+        >
+          <Link href="/auth/sign-up" className="btn btn-highlight fw-bold me-1">
+            SIGN UP
+          </Link>
+          <Link href="/auth/sign-in" onClick={() => handleLogin()} className="btn btn-highlight fw-bold">
+            LOGIN
+          </Link>
+        </div>
           <div className="scale">
             <Image
               className="img-fluid rounded-5 mt-5"
