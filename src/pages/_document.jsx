@@ -50,6 +50,19 @@ export default function DefaultDocument(props) {
             {/* <Link href="/dashboard" className="header-icon header-icon-1">
               <FontAwesomeIcon icon={faChevronLeft} />
             </Link> */}
+            <div
+              className="header-icon header-icon-3"
+              style={{
+                width: "auto",
+              }}
+            >
+              <Link href="/auth/sign-up" className="btn btn-highlight fw-bold me-1">
+                SIGN UP
+              </Link>
+              <Link href="/auth/sign-in" onClick={() => handleLogin()} className="btn btn-highlight fw-bold">
+                LOGIN
+              </Link>
+            </div>
             {/*<a*/}
             {/*  href="#"*/}
             {/*  data-menu="menu-main"*/}
