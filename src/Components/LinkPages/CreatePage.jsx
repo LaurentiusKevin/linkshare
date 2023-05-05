@@ -99,6 +99,7 @@ export default function CreatePage(props) {
   useEffect(() => {
     setLinkPrefix(window.location.hostname);
     if (pageData.url !== "") {
+      setLinkExists(false)
       setValue("url", pageData.url);
       setValue("name", pageData.name);
       setValue("description", pageData.description);

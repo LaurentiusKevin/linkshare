@@ -50,25 +50,25 @@ export default function DefaultDocument(props) {
             {/* <Link href="/dashboard" className="header-icon header-icon-1">
               <FontAwesomeIcon icon={faChevronLeft} />
             </Link> */}
-            <a
-              href="#"
-              data-menu="menu-main"
-              className="header-icon header-icon-4"
-            >
-              <i className="fas fa-bars"></i>
-            </a>
-            <a
-              href="#"
-              className="header-icon header-icon-3 show-on-theme-dark"
-            >
-              <i className="fas fa-sun"></i>
-            </a>
-            <a
-              href="#"
-              className="header-icon header-icon-3 show-on-theme-light"
-            >
-              <i className="fas fa-moon"></i>
-            </a>
+            {/*<a*/}
+            {/*  href="#"*/}
+            {/*  data-menu="menu-main"*/}
+            {/*  className="header-icon header-icon-4"*/}
+            {/*>*/}
+            {/*  <i className="fas fa-bars"></i>*/}
+            {/*</a>*/}
+            {/*<a*/}
+            {/*  href="#"*/}
+            {/*  className="header-icon header-icon-3 show-on-theme-dark"*/}
+            {/*>*/}
+            {/*  <i className="fas fa-sun"></i>*/}
+            {/*</a>*/}
+            {/*<a*/}
+            {/*  href="#"*/}
+            {/*  className="header-icon header-icon-3 show-on-theme-light"*/}
+            {/*>*/}
+            {/*  <i className="fas fa-moon"></i>*/}
+            {/*</a>*/}
           </div>
 
           <div className="page-content header-clear-medium">

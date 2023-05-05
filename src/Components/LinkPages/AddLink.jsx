@@ -7,17 +7,11 @@ import { faBackspace, faBackward, faBackwardStep, faCaretLeft, faHandBackFist, f
 import Swal from "sweetalert2";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Modal, ModalBody, ModalHeader } from "reactstrap";
-import ListLink from "../../Components/LinkPages/ListLink";
-import LinkCardComponent from "./LinkCard";
-import { useRouter } from 'next/router';
-import Link from 'next/link';
 
 export default function AddLinkComponents(props) {
-  const router = useRouter()
   const [modal, setModal] = useState(false);
-  const [activePage, setActivePage] = useState('step-1');
   const toggle = () => setModal(!modal);
-  const { onSubmit, editedLinkKey, links, deleteLinke } = props;
+  const { setActivePage, onSubmit, editedLinkKey, links, deleteLinke } = props;
   const MySwal = withReactContent(Swal);
 
   const formSchema = yup.object({
@@ -32,10 +26,6 @@ export default function AddLinkComponents(props) {
   function handleSetActivePage(page) {
     setActivePage(page)
   }
-
-  const handleBackButtonClick = () => {
-    router.back();
-  };
 
   const {
     register,
@@ -76,10 +66,8 @@ export default function AddLinkComponents(props) {
   }, [editedLinkKey, links, reset]);
 
   return (
-    <>    
-    <button onClick={handleBackButtonClick}>
-      Back
-    </button>
+    <>
+    <button onClick={() => setActivePage('step-1')}><FontAwesomeIcon icon={faCaretLeft} /> back</button>
       <div className="h6 fw-bolder text-primary-custom">
         Add your link detail
       </div>
